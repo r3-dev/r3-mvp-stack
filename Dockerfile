@@ -16,5 +16,5 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 FROM alpine:latest AS production
 COPY --from=build-backend /app .
-EXPOSE 3000
-CMD ["./main", "serve", "--http=0.0.0.0:3000"]
+EXPOSE ${PORT}
+CMD ["./main", "serve", "--http=0.0.0.0:${PORT}"]

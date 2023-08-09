@@ -6,11 +6,11 @@ services:
     container_name: pb-stack
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     volumes:
       - pocketbase-data:/pb_data
     healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:${PORT}/api/health || exit 1
       interval: 5s
       timeout: 5s
       retries: 5
