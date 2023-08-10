@@ -8,7 +8,10 @@
   "scripts": {
     "dev": "concurrently  -n \"BACKEND,FRONTEND\" -c \"cyan,yellow\" \"yarn dev:be\" \"yarn dev:fe\"",
     "dev:be": "cd backend && go run . serve",
-    "dev:fe": "cd frontend && yarn dev"
+    "dev:fe": "cd frontend && yarn dev",
+    "postinstall": "concurrently  -n \"BACKEND,FRONTEND\" -c \"cyan,yellow\" \"yarn postinstall:be\" \"yarn postinstall:fe\"",
+    "postinstall:be": "cd backend && go mod tidy && go mod download",
+    "postinstall:fe": "cd frontend && yarn"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
