@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "@tanstack/react-router";
 import router from "./router/index.ts";
+import { PocketBaseProvider } from "./providers/pb-provider.tsx";
 
 // Register your router for maximum type safety
 declare module "@tanstack/react-router" {
@@ -13,6 +14,8 @@ declare module "@tanstack/react-router" {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PocketBaseProvider>
+      <RouterProvider router={router} />
+    </PocketBaseProvider>
   </React.StrictMode>
 );
