@@ -1,0 +1,16 @@
+{
+  "name": "pb-stack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/r3-dev/pb-stack.git",
+  "author": "milanjrodd <milanrodd@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently  -n \"BACKEND,FRONTEND\" -c \"cyan,yellow\" \"yarn dev:be\" \"yarn dev:fe\"",
+    "dev:be": "cd backend && go run . serve",
+    "dev:fe": "cd frontend && yarn dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
