@@ -1,14 +1,14 @@
-# React Pocketbase
+# R3 MVP stack
 
 This is a fullstack template for blazingly fast MVP development. It is focused on Developer and DevOps experience.
 
 ## Tech Stack
 
-**Client:** Vite, React, Typescript, TailwindCSS
+**Client:** Astro, Typescript, TailwindCSS
 
 **Server:** Golang, Pocketbase
 
-**Database:** SQLite (Pocketbase implemented)
+**Database:** SQLite in WAL mode (Pocketbase implemented)
 
 ## Installation
 
