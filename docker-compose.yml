@@ -1,19 +1,21 @@
 version: "3.7"
 
 services:
-  pb-stack:
+  app:
     build: .
-    container_name: pb-stack
+    container_name: app
     restart: unless-stopped
     ports:
-      - "8090:8090"
+      - "${PORT}:${PORT}"
     volumes:
-      - pocketbase-data:/pb_data
+      - pocketbase-data:/dist/pb_data
     healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:${PORT}/api/health || exit 1
       interval: 5s
       timeout: 5s
       retries: 5
+    env_file:
+      - .env
 
 volumes:
   pocketbase-data:
