@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const authStore = Astro.locals.pb.authStore
+if (!authStore.token) {
+  return Astro.redirect('/login')
+}
+
+if (Astro.request.method === "POST") {
+  Astro.locals.pb.authStore.clear()
+  return Astro.redirect('/')
+}
+---
+
+<Layout title="Profile">
+  <h1>Profile</h1>
+  <form method="POST">
+    <button type="submit">Logout</button>
+  </form>
+  <pre>
+    {JSON.stringify(Astro.locals.pb.authStore, null, 2)}
+  </pre>
+</Layout>
