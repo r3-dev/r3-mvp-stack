@@ -1,0 +1,13 @@
+{
+  "name": "pocketbase-typegen",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node index.js",
+    "pocketbase-typegen": "pocketbase-typegen --db ../backend/pb_data/data.db --out ../frontend/src/types/pocketbase-types.ts"
+  },
+  "devDependencies": {
+    "pocketbase-typegen": "1.2.1"
+  }
+}

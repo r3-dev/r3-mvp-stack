@@ -5,31 +5,24 @@
   "repository": "https://github.com/r3-dev/r3-mvp-stack.git",
   "author": "milanjrodd <milanrodd@gmail.com>",
   "license": "MIT",
-  "watch": {
-    "typegen": {
-      "patterns": [
-        "backend",
-        "migrations"
-      ],
-      "extensions": "go"
-    }
-  },
   "scripts": {
-    "dev": "concurrently  -n \"BACKEND,FRONTEND,TYPEGEN\" -c \"cyan,yellow,red\" \"yarn dev:be\" \"yarn dev:fe\" \"yarn watch\"",
-    "dev:be": "cd backend && go run . serve",
-    "dev:fe": "cd frontend && yarn dev",
-    "postinstall": "concurrently  -n \"BACKEND,FRONTEND\" -c \"cyan,yellow\" \"yarn postinstall:be\" \"yarn postinstall:fe\"",
-    "postinstall:be": "cd backend && go mod tidy && go mod download",
-    "postinstall:fe": "cd frontend && yarn",
-    "typegen": "pocketbase-typegen --db ./backend/pb_data/data.db --out ./frontend/pocketbase/pb-types.ts",
-    "watch": "npm-watch"
+    "dev": "pnpm --filter=./apps/* run dev",
+    "dev:frontend": "pnpm --filter=./apps/frontend run dev",
+    "dev:backend": "pnpm --filter=./apps/backend run dev",
+    "build": "pnpm --filter=./apps/* run build",
+    "ci": "pnpm install --frozen-lockfile",
+    "ci:prod": "pnpm install --frozen-lockfile --prod",
+    "ngrok": "ngrok http 3000",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json}\"",
+    "install-sqlite-mac-m1": "npm install -d sqlite3 --build-from-source --target_arch=arm64 --fallback-to-build && rm -rf package-lock.json"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0",
-    "npm-watch": "^0.11.0",
-    "pocketbase-typegen": "^1.1.12"
+    "@crashmax/prettier-config": "4.1.0",
+    "@types/node": "18",
+    "ngrok": "5.0.0-beta.2",
+    "sqlite3": "5.1.6"
   },
-  "dependencies": {
-    "node": "^20.6.0"
+  "engines": {
+    "node": "^18"
   }
 }
