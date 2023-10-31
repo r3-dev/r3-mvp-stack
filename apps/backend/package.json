@@ -5,6 +5,6 @@
   "private": true,
   "scripts": {
     "dev": "go run . serve",
-    "prepare": "node scripts/go.js"
+    "prepare": "node scripts/install.js"
   }
 }

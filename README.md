@@ -1,27 +1,21 @@
 # R3 MVP stack
 
-This is a fullstack template for blazingly fast MVP development. It is focused on Developer and DevOps experience.
+> This is a fullstack template for blazingly fast MVP development. It is focused on Developer and DevOps experience.
 
 ## Tech Stack
 
-**Client:** Astro, Typescript, TailwindCSS
+- Frontend
+  - [Astro](https://github.com/withastro/astro)
+  - [TailwindCSS](https://tailwindcss.com)
+  - [TypeScript](https://www.typescriptlang.org)
 
-**Server:** Golang, Pocketbase
+- Backend
+  - [Golang](https://golang.org)
+  - [PocketBase](https://github.com/pocketbase/pocketbase)
 
-**Database:** SQLite in WAL mode (Pocketbase implemented)
+## Scripts
 
-## Installation
-
-Install dependencies with yarn
-
-```bash
-  yarn
-```
-
-## Run Locally
-
-Run both backend and frontend
-
-```bash
-  yarn dev
-```
+- `pnpm install --frozen-lockfile` — Install dependencies.
+- `pnpm dev` — Starts the application in development mode at (frontend - http://localhost:3000, backend - http://localhost:8090/_/).
+- `pnpm build` — Builds the application for production.
+- `pnpm format` — Format code using Prettier.

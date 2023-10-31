@@ -22,4 +22,4 @@ coverage
 *.html
 *.md
 .*ignore
-pb-types.ts
+pocketbase-types.ts

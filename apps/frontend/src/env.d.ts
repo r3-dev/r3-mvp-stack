@@ -1,7 +1,7 @@
 /// <reference types="astro/client" />
 
 declare namespace App {
-    interface Locals {
-        pb: import('pocketbase').default
-    }
+  interface Locals {
+    pb: import('pocketbase').default
+  }
 }
