@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData();
+    const email = data.get('email') as string;
+    const password = data.get('password') as string;
+    if (!email || !password) {
+      return Astro.redirect('/login');
+    }
+    const users = Astro.locals.pb.collection('users');
+
+    await users.getFirstListItem(`email="${email}"`).catch(async () => {
+      await users.create({
+        email,
+        password,
+        passwordConfirm: password,
+      });
+    });
+
+    await users.authWithPassword(email, password);
+    return Astro.redirect('/profile');
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error);
+    }
+  }
+}
+---
+
+<Layout title='Login'>
+  <main>
+    <form method='POST'>
+      <label>
+        Email
+        <input type='email' name='email' />
+      </label>
+      <label>
+        Password
+        <input type='password' name='password' />
+      </label>
+      <button type='submit'>Login</button>
+    </form>
+  </main>
+</Layout>
