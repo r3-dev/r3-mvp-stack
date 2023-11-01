@@ -16,6 +16,6 @@
 ## Scripts
 
 - `pnpm install --frozen-lockfile` — Install dependencies.
-- `pnpm dev` — Starts the application in development mode at (frontend - http://localhost:3000, backend - http://localhost:8090/_/).
+- `pnpm dev` — Starts the application in development mode at (frontend - http://localhost:4321, backend - http://localhost:8090/_/).
 - `pnpm build` — Builds the application for production.
 - `pnpm format` — Format code using Prettier.
