@@ -1,16 +1,37 @@
 version: "3.7"
 
 services:
-  app:
-    build: .
-    container_name: app
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # reference docker target
+      target: backend 
+    container_name: backend
     restart: unless-stopped
     ports:
-      - "${PORT}:${PORT}"
+      - "8090:8090"
     volumes:
       - pocketbase-data:/dist/pb_data
     healthcheck: #optional (recommended) since v0.10.0
       test: wget --no-verbose --tries=1 --spider http://localhost:${PORT}/api/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - .env
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # reference docker target
+      target: frontend
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "4321:4321"
+    healthcheck: #optional (recommended) since v0.10.0
+      test: wget --no-verbose --tries=1 --spider http://localhost:4321/api/health || exit 1
       interval: 5s
       timeout: 5s
       retries: 5
