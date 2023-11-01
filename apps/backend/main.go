@@ -9,8 +9,7 @@ import (
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
-	// uncomment once you have at least one .go migration file in the "migrations" directory
-	// _ "yourpackage/migrations"
+	_ "pb-stack/migrations"
 )
 
 func main() {
