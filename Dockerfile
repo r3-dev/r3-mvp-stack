@@ -12,7 +12,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o dist/main.bin .
 FROM alpine:latest AS reverse-proxy
 WORKDIR /app
 COPY --from=build-reverse-proxy /app/dist/main.bin /app/config.prod.json ./
-EXPOSE 3000
+EXPOSE ${PROXY_PORT}
 
 #####################################
 #BACKEND#
@@ -28,7 +28,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o dist/main.bin .
 FROM alpine:latest AS backend
 WORKDIR /app
 COPY --from=build-backend /app/dist/main.bin ./
-EXPOSE 8090
+EXPOSE ${BACKEND_PORT}
 
 #####################################
 #OTHER PNPM APPS#
@@ -55,7 +55,6 @@ RUN corepack enable
 WORKDIR /app
 COPY --from=pnpm-build /prod/frontend ./
 ENV HOST=0.0.0.0
-ENV PORT=4321
-EXPOSE 4321
+EXPOSE ${FRONTEND_PORT}
 
 # Add new app container here...

@@ -5,7 +5,7 @@ import PocketBase from 'pocketbase'
  * @see https://github.com/pocketbase/js-sdk?tab=readme-ov-file#ssr-integration
  */
 export const onRequest = defineMiddleware(async ({ locals, request }, next) => {
-  locals.pb = new PocketBase(import.meta.env.BACKEND_URL)
+  locals.pb = new PocketBase(import.meta.env.INTERNAL_BACKEND_URL)
 
   // load the store data from the request cookie string
   locals.pb.authStore.loadFromCookie(request.headers.get('cookie') || '')

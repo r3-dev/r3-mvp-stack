@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "go run . serve",
+    "dev": "go run . serve --http=0.0.0.0:$BACKEND_PORT",
     "prepare": "node scripts/install.js"
   }
 }

@@ -11,17 +11,20 @@ export default defineConfig({
     server: {
       proxy: {
         '/api': {
-          target: 'http://127.0.0.1:8090',
+          target: process.env.INTERNAL_BACKEND_URL,
           changeOrigin: true,
           ws: true
         },
         '/_/': {
-          target: 'http://127.0.0.1:8090',
+          target: process.env.INTERNAL_BACKEND_URL,
           changeOrigin: true,
           ws: true
         }
       }
     }
   },
-  site: process.env.SITE_URL
+  site: process.env.PUBLIC_FRONTEND_URL,
+  server: {
+    port: parseInt(process.env.FRONTEND_PORT)
+  }
 })
