@@ -23,7 +23,7 @@ export default defineConfig({
       }
     }
   },
-  site: process.env.PUBLIC_FRONTEND_URL,
+  site: process.env.SITE_URL,
   server: {
     port: parseInt(process.env.FRONTEND_PORT)
   }

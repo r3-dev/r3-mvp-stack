@@ -7,10 +7,7 @@ declare namespace App {
 }
 
 interface ImportMetaEnv {
-  readonly PUBLIC_BACKEND_URL: string
   readonly INTERNAL_BACKEND_URL: string
-
-  readonly PUBLIC_FRONTEND_URL: string
   // more env variables...
 }
 
