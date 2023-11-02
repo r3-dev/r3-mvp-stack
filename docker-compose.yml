@@ -1,6 +1,23 @@
 version: "3.7"
 
 services:
+  reverse-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # reference docker target
+      target: reverse-proxy
+    container_name: reverse-proxy
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    healthcheck: #optional (recommended) since v0.10.0
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command: sh -c "cd /app && ./main.bin"
+
   backend:
     build:
       context: .
@@ -14,12 +31,14 @@ services:
     volumes:
       - pocketbase-data:/dist/pb_data
     healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:${PORT}/api/health || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
       interval: 5s
       timeout: 5s
       retries: 5
     env_file:
       - .env
+    command: sh -c "cd /app && ./main.bin serve --http=0.0.0.0:8090"
+
   frontend:
     build:
       context: .
@@ -31,12 +50,13 @@ services:
     ports:
       - "4321:4321"
     healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:4321/api/health || exit 1
+      test: wget --no-verbose --tries=1 --spider http://localhost:4321/functions/health || exit 1
       interval: 5s
       timeout: 5s
       retries: 5
     env_file:
       - .env
+    command: sh -c "cd /app && pnpm run start"
 
 volumes:
   pocketbase-data:

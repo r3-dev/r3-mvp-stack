@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "url": "http://localhost:8090",
+      "paths": ["/api/*", "/_/*"]
+    },
+    {
+      "name": "frontend",
+      "url": "http://localhost:4321",
+      "paths": ["/*"]
+    }
+  ]
+}

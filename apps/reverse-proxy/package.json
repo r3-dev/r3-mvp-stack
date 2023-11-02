@@ -1,0 +1,10 @@
+{
+  "name": "reverse-proxy",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "go run . serve",
+    "prepare": "node scripts/install.js"
+  }
+}

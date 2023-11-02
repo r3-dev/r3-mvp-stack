@@ -11,14 +11,14 @@ if (Astro.request.method === 'POST') {
     }
     const users = Astro.locals.pb.collection('users');
 
-    await users.getFirstListItem(`email="${email}"`).catch(async () => {
+   await users.getFirstListItem(`email="${email}"`).catch(async () => {
       await users.create({
         email,
         password,
         passwordConfirm: password,
       });
     });
-
+    
     await users.authWithPassword(email, password);
     return Astro.redirect('/profile');
   } catch (error) {

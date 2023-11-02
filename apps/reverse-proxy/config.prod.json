@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "url": "http://backend:8090",
+      "paths": ["/api/*", "/_/*"]
+    },
+    {
+      "name": "frontend",
+      "url": "http://frontend:4321",
+      "paths": ["/*"]
+    }
+  ]
+}
