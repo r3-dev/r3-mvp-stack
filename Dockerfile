@@ -13,6 +13,7 @@ FROM alpine:latest AS reverse-proxy
 WORKDIR /app
 COPY --from=build-reverse-proxy /app/dist/main.bin /app/config.prod.json ./
 EXPOSE ${PROXY_PORT}
+ENTRYPOINT ./main.bin -port ${PROXY_PORT}
 
 #####################################
 #BACKEND#
@@ -29,6 +30,7 @@ FROM alpine:latest AS backend
 WORKDIR /app
 COPY --from=build-backend /app/dist/main.bin ./
 EXPOSE ${BACKEND_PORT}
+ENTRYPOINT ./main.bin serve --http=0.0.0.0:${BACKEND_PORT}
 
 #####################################
 #OTHER PNPM APPS#
@@ -56,5 +58,6 @@ WORKDIR /app
 COPY --from=pnpm-build /prod/frontend ./
 ENV HOST=0.0.0.0
 EXPOSE ${FRONTEND_PORT}
+ENTRYPOINT [ "pnpm", "run", "start" ]
 
 # Add new app container here...

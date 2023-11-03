@@ -16,7 +16,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    command: sh -c "cd /app && ./main.bin -port ${PROXY_PORT}"
+    env_file:
+      - .env
 
   backend:
     build:
@@ -37,7 +38,6 @@ services:
       retries: 5
     env_file:
       - .env
-    command: sh -c "cd /app && ./main.bin serve --http=0.0.0.0:${BACKEND_PORT}"
 
   frontend:
     build:
@@ -56,7 +56,6 @@ services:
       retries: 5
     env_file:
       - .env
-    command: sh -c "cd /app && pnpm run start"
 
 volumes:
   pocketbase-data:
