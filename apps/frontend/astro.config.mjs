@@ -25,6 +25,6 @@ export default defineConfig({
   },
   site: process.env.SITE_URL,
   server: {
-    port: parseInt(process.env.FRONTEND_PORT)
+    port: parseInt(process.env.FRONTEND_PORT) | 4321
   }
 })
