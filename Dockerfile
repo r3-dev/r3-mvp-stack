@@ -1,7 +1,7 @@
 #####################################
 #REVERSE PROXY#
 #####################################
-FROM golang:1.21.1-alpine AS build-reverse-proxy
+FROM golang:1.21-alpine AS build-reverse-proxy
 WORKDIR /app
 COPY ./apps/reverse-proxy/go.mod ./apps/reverse-proxy/go.sum ./
 RUN go mod download
@@ -18,7 +18,7 @@ ENTRYPOINT ./main.bin -port ${PROXY_PORT}
 #####################################
 #BACKEND#
 #####################################
-FROM golang:1.21.1-alpine AS build-backend
+FROM golang:1.21-alpine AS build-backend
 WORKDIR /app
 COPY ./apps/backend/go.mod ./apps/backend/go.sum ./
 RUN go mod download
