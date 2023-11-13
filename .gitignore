@@ -1,7 +1,5 @@
 # build output
 dist/
-
-# generated types
 .astro/
 
 # dependencies
@@ -20,8 +18,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# Pocketbase
-pb_data
+# Pocketbase database
+*.db
+*.db-*
 
 # If you prefer the allow list template instead of the deny list, see community template:
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
@@ -35,9 +34,3 @@ pb_data
 
 # Test binary, built with `go test -c`
 *.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-# Dependency directories (remove the comment below to include it)
-# vendor/
