@@ -6,25 +6,26 @@
   "author": "milanjrodd <milanrodd@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "dotenv -e .env.development -- pnpm --filter=./apps/* --reporter=append-only run dev",
-    "dev:frontend": "dotenv -e .env.development -- pnpm --filter=./apps/frontend --reporter=append-only run dev",
-    "dev:backend": "dotenv -e .env.development -- pnpm --filter=./apps/backend --reporter=append-only run dev",
-    "dev:proxy": "dotenv -e .env.development -- pnpm --filter=./apps/reverse-proxy --reporter=append-only run dev",
-    "build": "dotenv -e .env -- pnpm --filter=./apps/* --reporter=append-only run build",
-    "ci": "pnpm install --frozen-lockfile",
-    "ci:prod": "pnpm install --frozen-lockfile --prod",
+    "dev": "dotenv -e .env.development -- turbo run dev --filter=./apps/* --filter=./packages/*",
+    "dev:frontend": "dotenv -e .env.development -- turbo run dev --filter=./apps/frontend",
+    "dev:backend": "dotenv -e .env.development -- turbo run dev --filter=./apps/backend",
+    "dev:proxy": "dotenv -e .env.development -- turbo run dev --filter=./apps/reverse-proxy",
+    "build": "dotenv -e .env -- turbo run build --filter=./apps/*",
+    "ci": "pnpm i --frozen-lockfile",
+    "ci:prod": "pnpm i --frozen-lockfile --prod",
     "ngrok": "ngrok http 3000",
-    "format": "prettier --write \"**/*.{js,ts,tsx,json}\"",
+    "typegen": "pnpm --filter=./packages/pocketbase run typegen",
+    "format": "prettier --write \"**/*.{js,ts,tsx,vue}\"",
     "install-sqlite-mac-m1": "npm install -d sqlite3 --build-from-source --target_arch=arm64 --fallback-to-build && rm -rf package-lock.json"
   },
   "devDependencies": {
-    "@crashmax/prettier-config": "4.1.0",
-    "@types/node": "20.8.10",
-    "dotenv-cli": "^7.3.0",
+    "@crashmax/prettier-config": "5.0.1",
+    "@crashmax/tsconfig": "2.0.1",
+    "@types/node": "20.9.0",
+    "dotenv-cli": "7.3.0",
     "ngrok": "5.0.0-beta.2",
-    "sqlite3": "5.1.6"
-  },
-  "engines": {
-    "node": "^20"
+    "nodemon": "3.0.1",
+    "sqlite3": "5.1.6",
+    "turbo": "1.10.16"
   }
 }

@@ -6,6 +6,7 @@ logs
 coverage
 .next
 .turbo
+.astro
 .github
 .angular
 .svelte-kit
@@ -22,4 +23,4 @@ coverage
 *.html
 *.md
 .*ignore
-pocketbase-types.ts
+/packages/pocketbase/src/types.ts

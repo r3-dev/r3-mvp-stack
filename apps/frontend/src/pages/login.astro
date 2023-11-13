@@ -18,7 +18,7 @@ if (Astro.request.method === 'POST') {
         passwordConfirm: password,
       });
     });
-    
+
     await users.authWithPassword(email, password);
     return Astro.redirect('/profile');
   } catch (error) {

@@ -1,3 +1,0 @@
-package migrations
-
-func init() { }

@@ -2,7 +2,7 @@
 
 declare namespace App {
   interface Locals {
-    pb: import('pocketbase').default
+    pb: import('@r3-dev/pocketbase/types').TypedPocketBase
   }
 }
 
