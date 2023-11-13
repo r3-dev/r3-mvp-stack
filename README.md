@@ -5,17 +5,16 @@
 ## Tech Stack
 
 - Frontend
-  - [Astro](https://github.com/withastro/astro)
+  - [Astro](https://astro.build)
   - [TailwindCSS](https://tailwindcss.com)
   - [TypeScript](https://www.typescriptlang.org)
 
 - Backend
   - [Golang](https://golang.org)
-  - [PocketBase](https://github.com/pocketbase/pocketbase)
+  - [PocketBase](https://pocketbase.io)
 
 ## Scripts
 
-- `pnpm install --frozen-lockfile` — Install dependencies.
+- `pnpm i --frozen-lockfile` — Install dependencies.
 - `pnpm dev` — Starts the application in development mode at (frontend - http://localhost:4321, backend - http://localhost:8090/_/).
-- `pnpm build` — Builds the application for production.
 - `pnpm format` — Format code using Prettier.
