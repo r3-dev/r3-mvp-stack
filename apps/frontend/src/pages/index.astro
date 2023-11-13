@@ -1,28 +1,76 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Card from '../components/card.astro'
+import Layout from '../layouts/layout.astro'
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<ul>
-			<li>
-				<a href="/login">Login</a>
-			</li>
-			<li>
-				<a href="/profile">Profile</a>
-			</li>
-		</ul>
-	</main>
+<Layout title="Welcome to your first R3 Dev template!">
+  <div class="flex-grow flex flex-col justify-center p-12">
+    <div class="flex items-center">
+      <svg
+        width="36"
+        height="40"
+        viewBox="0 0 36 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 13.695C0 10.1649 2.08898 6.96926 5.32254 5.55292L14.4336 1.56212C16.707 0.566372 19.293 0.566371 21.5664 1.56212L30.6775 5.55292C33.911 6.96926 36 10.1649 36 13.695V25.5189C36 28.9203 34.0589 32.0235 31.0003 33.5118L21.8892 37.9451C19.434 39.1398 16.566 39.1398 14.1108 37.9451L4.99967 33.5118C1.9411 32.0235 0 28.9203 0 25.5189V13.695Z"
+          class="fill-brand"
+        ></path>
+        <path
+          d="M10.6822 22.0205C10.379 21.8455 10 22.0643 10 22.4144V26.7208C10 26.8833 10.0867 27.0334 10.2274 27.1146L12.5014 28.4276C12.8047 28.6026 13.1837 28.3838 13.1837 28.0337V23.7273C13.1837 23.5648 13.097 23.4147 12.9563 23.3334L10.6822 22.0205Z"
+          fill="white"
+        ></path>
+        <path
+          d="M18.4003 9.4241C18.2045 9.46324 17.9968 9.49981 17.8227 9.60034L10.2274 13.9855C10.0867 14.0667 10 14.2169 10 14.3794V17.898C10 18.0605 10.0867 18.2106 10.2274 18.2918L12.5014 19.6048C12.8047 19.7798 13.1837 19.561 13.1837 19.2109V16.1124C13.1837 15.9499 13.2703 15.7998 13.4111 15.7185L19.0049 12.4889C19.0564 12.4592 19.1131 12.4391 19.1723 12.4333C19.2357 12.427 19.2901 12.4252 19.3691 12.4265C19.9292 12.4422 20.417 12.7473 20.6882 13.1976C20.7295 13.2662 20.7658 13.3381 20.7965 13.413C20.8162 13.4608 20.8244 13.5124 20.8244 13.5642V18.2131C20.8244 18.3756 20.7378 18.5257 20.597 18.607L16.3673 21.049C16.0641 21.224 16.0641 21.6617 16.3673 21.8367L22.2343 25.2241C22.3751 25.3053 22.4618 25.4554 22.4618 25.6179V28.5589C22.4618 28.7214 22.5484 28.8715 22.6892 28.9527L24.7813 30.1606C25.0845 30.3357 25.4635 30.1169 25.4635 29.7667V23.6748C25.4635 23.5123 25.3768 23.3622 25.2361 23.2809L22.7346 21.8367C22.4314 21.6617 22.4314 21.224 22.7346 21.049L23.7807 20.445C23.9214 20.3638 24.0081 20.2136 24.0081 20.0511L24.0079 14.0631C24.0156 13.2503 23.8102 12.4393 23.4124 11.7298C23.1547 11.2702 22.8217 10.8585 22.4302 10.5113C21.9675 10.1011 21.4231 9.78108 20.8244 9.57873C20.0488 9.31658 19.2036 9.26354 18.4003 9.4241Z"
+          fill="white"
+        ></path>
+      </svg>
+      <h1
+        class="sm:font-light text-2xl sm:text-3xl md:text-4xl text-gray-900 ml-6"
+      >
+        Welcome to your first R3 Dev template!
+      </h1>
+    </div>
+    <div class="md:pl-16 pl-0">
+      <p class="sm:text-xl text-gray-600 mt-3 leading-relaxed">
+        The file you're looking at is the
+        <span
+          class="font-mono bg-gray-200 text-sm sm:text-base text-gray-700 subpixel-antialiased px-1 rounded"
+          >apps/frontend/pages/index.astro</span
+        >
+         file in the repository you just cloned. If you used
+        <span
+          class="font-mono bg-gray-200 text-sm sm:text-base text-gray-700 subpixel-antialiased px-1 rounded"
+          >pnpm dev</span
+        >
+         to view this page, try editing that file to see this page automatically
+        update with your changes.
+      </p>
+    </div>
+  </div>
+  <div class="bg-gray-100 border-t-2 border-gray-200">
+    <div class="flex flex-wrap">
+      <Card
+        title="Astro"
+        description="Astro builds fast content sites, powerful web applications, dynamic server APIs, and everything in-between."
+        href="https://docs.astro.build/en/getting-started/"
+      />
+      <Card
+        title="PocketBase"
+        description="The all-in-one self-hosted database that powers your apps."
+        href="https://pocketbase.io/docs/client-side-sdks"
+      />
+      <Card
+        title="TailwindCSS"
+        description="The utility-first CSS framework for rapidly building custom user interfaces."
+        href="https://tailwindcss.com/docs/installation"
+      />
+      <Card
+        title="Docker"
+        description="Docker makes it easy to build, test, and deploy applications."
+        href="https://docs.docker.com/"
+      />
+    </div>
+  </div>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-</style>

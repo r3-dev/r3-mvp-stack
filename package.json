@@ -1,7 +1,7 @@
 {
   "name": "r3-mvp-stack",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/r3-dev/r3-mvp-stack.git",
   "author": "milanjrodd <milanrodd@gmail.com>",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "ci:prod": "pnpm i --frozen-lockfile --prod",
     "ngrok": "ngrok http 3000",
     "typegen": "pnpm --filter=./packages/pocketbase run typegen",
-    "format": "prettier --write \"**/*.{js,ts,tsx,vue}\"",
+    "format": "prettier --write \"**/*.{js,ts,tsx,vue,astro}\"",
     "install-sqlite-mac-m1": "npm install -d sqlite3 --build-from-source --target_arch=arm64 --fallback-to-build && rm -rf package-lock.json"
   },
   "devDependencies": {
@@ -25,6 +25,7 @@
     "dotenv-cli": "7.3.0",
     "ngrok": "5.0.0-beta.2",
     "nodemon": "3.0.1",
+    "prettier-plugin-astro": "0.12.1",
     "sqlite3": "5.1.6",
     "turbo": "1.10.16"
   }
