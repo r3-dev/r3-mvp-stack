@@ -1,0 +1,17 @@
+{
+  "name": "@r3-dev/solid",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./routes": "./src/routes.ts"
+  },
+  "devDependencies": {
+    "solid-js": "1.8.5",
+    "typescript": "5.2.2"
+  },
+  "dependencies": {
+    "@solidjs/router": "0.9.1"
+  }
+}

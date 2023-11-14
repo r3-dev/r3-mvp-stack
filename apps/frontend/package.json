@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@astrojs/node": "6.0.3",
+    "@astrojs/solid-js": "3.0.2",
     "@astrojs/tailwind": "5.0.2",
     "@r3-dev/pocketbase": "workspace:^",
+    "@r3-dev/solid": "workspace:^",
     "astro": "3.5.3",
+    "solid-js": "1.8.5",
     "tailwindcss": "3.3.5"
   }
 }
