@@ -1,5 +1,6 @@
 ---
 import { SolidApp } from '@r3-dev/solid'
+import { PocketbaseProvider } from '@r3-dev/solid/pocketbase'
 import { basePath, routes } from '@r3-dev/solid/routes'
 
 import Layout from '../../layouts/layout.astro'
@@ -21,5 +22,11 @@ export const prerender = true
 ---
 
 <Layout title="Solid.js entrypoint">
-  <SolidApp client:only="solid-js" />
+  <PocketbaseProvider
+    url={import.meta.env.INTERNAL_BACKEND_URL}
+    authStore={Astro.locals.pb.authStore}
+    client:only="solid-js"
+  >
+    <SolidApp client:only="solid-js" />
+  </PocketbaseProvider>
 </Layout>

@@ -5,13 +5,16 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./routes": "./src/routes.ts"
+    "./routes": "./src/routes.ts",
+    "./pocketbase": "./src/libs/pocketbase.tsx"
   },
   "devDependencies": {
     "solid-js": "1.8.5",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "vite": "4.5.0"
   },
   "dependencies": {
+    "@r3-dev/pocketbase": "workspace:^",
     "@solidjs/router": "0.9.1"
   }
 }
