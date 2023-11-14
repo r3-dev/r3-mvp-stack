@@ -1,0 +1,25 @@
+---
+import { SolidApp } from '@r3-dev/solid'
+import { basePath, routes } from '@r3-dev/solid/routes'
+
+import Layout from '../../layouts/layout.astro'
+
+export function getStaticPaths() {
+  const paths = Object.values(routes).map((route) => ({
+    params: {
+      route: route.replace(basePath + '/', '').replace(basePath, '')
+    }
+  }))
+
+  return [
+    { params: { route: undefined } },
+    ...paths
+  ]
+}
+
+export const prerender = true
+---
+
+<Layout title="Solid.js entrypoint">
+  <SolidApp client:only="solid-js" />
+</Layout>
