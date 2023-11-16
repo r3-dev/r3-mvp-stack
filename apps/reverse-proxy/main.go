@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"flag"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -39,13 +38,10 @@ func (c *reverseProxyConfig) get(filename string) *reverseProxyConfig {
 func main() {
 	log.Println("Starting reverse proxy...")
 
-	// variables declaration
-	var port string
-
-	// flags declaration using flag package
-	flag.StringVar(&port, "port", "3000", "Specify port. Default is 3000")
-
-	flag.Parse() // after declaring flags we need to call it
+	port := os.Getenv("PROXY_PORT")
+	if port == "" {
+		port = "3000"
+	}
 
 	exePath := os.Args[0]
 	isDevMode := strings.HasPrefix(exePath, os.TempDir()) || strings.Contains(exePath, "debug")
