@@ -1,24 +1,6 @@
 version: "3.7"
 
 services:
-  reverse-proxy:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      # reference docker target
-      target: reverse-proxy
-    container_name: reverse-proxy
-    restart: unless-stopped
-    ports:
-      - "${PROXY_PORT}:${PROXY_PORT}"
-    healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:${PROXY_PORT}/api/health || exit 1
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    env_file:
-      - .env
-
   backend:
     build:
       context: .
