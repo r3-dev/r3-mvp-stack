@@ -1,22 +1,15 @@
-version: "3.7"
+version: '3.7'
 
 services:
-  r3-mvp-dev:
+  r3-mvp-stack:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-      # reference docker target
-    container_name: r3-mvp-dev
-    restart: unless-stopped
-    ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        GO_VERSION: "1.21.4"
+        NODE_VERSION: "18"
+        PNPM_VERSION: "8"
+    command: sleep infinity
+    user: r3-mvp-stack
     volumes:
-      - ./:/app
-    healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:${BACKEND_PORT}/api/health || exit 1
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    env_file:
-      - .env
+      - .:/workspace:cached

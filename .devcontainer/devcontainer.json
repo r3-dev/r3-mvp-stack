@@ -1,0 +1,21 @@
+{
+	"name": "r3-mvp-stack",
+	"dockerComposeFile": "../docker-compose.dev.yml",
+	"service": "r3-mvp-stack",
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [
+		4321,
+		8090
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"bradlc.vscode-tailwindcss",
+				"golang.go",
+				"esbenp.prettier-vscode"
+			]
+		}
+	},
+	"remoteUser": "r3-mvp-stack"
+}
