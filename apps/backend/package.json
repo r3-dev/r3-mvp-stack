@@ -4,7 +4,6 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "go run . serve --dir database",
-    "prepare": "node scripts/install.js"
+    "dev": "go run . serve --dir database --http=0.0.0.0:$BACKEND_PORT"
   }
 }
