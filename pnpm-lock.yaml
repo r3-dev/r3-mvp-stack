@@ -65,8 +65,6 @@ importers:
         specifier: 3.3.5
         version: 3.3.5
 
-  apps/reverse-proxy: {}
-
   packages/pocketbase:
     dependencies:
       pocketbase:
