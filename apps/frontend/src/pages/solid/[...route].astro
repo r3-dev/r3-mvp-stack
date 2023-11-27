@@ -1,27 +1,10 @@
 ---
 import { SolidApp } from '@r3-dev/solid'
 import { PocketbaseProvider } from '@r3-dev/solid/pocketbase'
-import { basePath, routes } from '@r3-dev/solid/routes'
-
 import Layout from '../../layouts/layout.astro'
-
-export function getStaticPaths() {
-  const paths = Object.values(routes).map((route) => ({
-    params: {
-      route: route.replace(basePath + '/', '').replace(basePath, '')
-    }
-  }))
-
-  return [
-    { params: { route: undefined } },
-    ...paths
-  ]
-}
-
-export const prerender = true
 ---
 
-<Layout title="Solid.js entrypoint">
+<Layout title="Solid entrypoint">
   <PocketbaseProvider
     url={import.meta.env.INTERNAL_BACKEND_URL}
     authStore={Astro.locals.pb.authStore}
