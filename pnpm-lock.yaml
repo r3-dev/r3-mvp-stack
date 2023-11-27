@@ -111,6 +111,9 @@ importers:
 
   packages/vue:
     dependencies:
+      '@r3-dev/pocketbase':
+        specifier: workspace:^
+        version: link:../pocketbase
       pinia:
         specifier: 2.1.7
         version: 2.1.7(typescript@5.2.2)(vue@3.3.9)

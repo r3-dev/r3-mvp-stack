@@ -10,6 +10,3 @@ const counter = useCounter()
   <p>Counter: {{ counter.count }}</p>
   <router-link v-bind:to="paths.counter">Counter</router-link>
 </template>
-
-<style scoped>
-</style>

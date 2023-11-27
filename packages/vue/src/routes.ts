@@ -1,8 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router'
+
 export const basePath = '/vue'
 
 export const paths = {
-  home: basePath + '/',
+  home: basePath,
   counter: basePath + '/counter'
 }
 

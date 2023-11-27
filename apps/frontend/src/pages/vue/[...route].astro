@@ -1,8 +1,13 @@
 ---
+import VueApp from '@r3-dev/vue'
+
 import Layout from '../../layouts/layout.astro'
-import App from '@r3-dev/vue'
 ---
 
 <Layout title="Vue entrypoint">
-  <App client:only="vue" />
+  <VueApp
+    client:only="vue"
+    url={import.meta.env.INTERNAL_BACKEND_URL}
+    authStore={Astro.locals.pb.authStore}
+  />
 </Layout>
