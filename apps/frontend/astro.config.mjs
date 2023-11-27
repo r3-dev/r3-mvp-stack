@@ -1,5 +1,6 @@
 import node from '@astrojs/node'
-import solidJs from '@astrojs/solid-js'
+import vue from '@astrojs/vue'
+import solid from '@astrojs/solid-js'
 import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
 
@@ -33,6 +34,9 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: true
     }),
-    solidJs()
+    vue({
+      appEntrypoint: '/src/pages/vue/_app',
+    }),
+    solid(),
   ]
 })
