@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { paths } from '../routes';
 import { useCounter } from '../composables/use-counter'
+import { paths } from '../routes'
+
 const counter = useCounter()
 </script>
 

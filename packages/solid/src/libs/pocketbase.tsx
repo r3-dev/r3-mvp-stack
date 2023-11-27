@@ -1,5 +1,6 @@
-import PocketBase, { type BaseAuthStore } from '@r3-dev/pocketbase'
+import PocketBase from '@r3-dev/pocketbase'
 import { createContext, createEffect, useContext } from 'solid-js'
+import type { BaseAuthStore } from '@r3-dev/pocketbase'
 import type { TypedPocketBase } from '@r3-dev/pocketbase/types'
 import type { ParentComponent } from 'solid-js'
 

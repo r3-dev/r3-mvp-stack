@@ -1,4 +1,5 @@
 import { A } from '@solidjs/router'
+
 import { routes } from '../routes'
 
 export default function About() {
