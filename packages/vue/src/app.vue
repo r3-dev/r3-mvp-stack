@@ -12,7 +12,10 @@ const props = defineProps<{
 
 onMounted(() => {
   pb.connect(props.url, props.authStore)
-  console.log(pb.pocketbase?.authStore)
+
+  if (import.meta.env.DEV) {
+    console.log('Vue pocketbase', pb.pocketbase)
+  }
 })
 </script>
 

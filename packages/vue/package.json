@@ -25,6 +25,7 @@
     "eslint": "8.49.0",
     "eslint-plugin-vue": "9.17.0",
     "typescript": "5.2.2",
+    "vite": "5.0.2",
     "vue-tsc": "1.8.22"
   }
 }

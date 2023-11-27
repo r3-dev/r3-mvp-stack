@@ -30,7 +30,7 @@ export const PocketbaseProvider: ParentComponent<PocketBaseProps> = (props) => {
 
   createEffect(() => {
     if (import.meta.env.DEV) {
-      console.log(pb.authStore)
+      console.log('Solid pocketbase', pb)
     }
   })
 
