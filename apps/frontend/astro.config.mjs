@@ -1,42 +1,42 @@
-import node from '@astrojs/node'
-import vue from '@astrojs/vue'
-import solid from '@astrojs/solid-js'
-import tailwind from '@astrojs/tailwind'
-import { defineConfig } from 'astro/config'
+import node from "@astrojs/node";
+import vue from "@astrojs/vue";
+import solid from "@astrojs/solid-js";
+import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: "server",
   adapter: node({
-    mode: 'standalone'
+    mode: "standalone",
   }),
   vite: {
     server: {
       proxy: {
-        '/api': {
+        "/api": {
           target: process.env.INTERNAL_BACKEND_URL,
           changeOrigin: true,
-          ws: true
+          ws: true,
         },
-        '/_/': {
+        "/_/": {
           target: process.env.INTERNAL_BACKEND_URL,
           changeOrigin: true,
-          ws: true
-        }
-      }
-    }
+          ws: true,
+        },
+      },
+    },
   },
   site: process.env.SITE_URL,
   server: {
-    port: parseInt(process.env.FRONTEND_PORT) | 4321
+    port: parseInt(process.env.FRONTEND_PORT) || 4321,
   },
   integrations: [
     tailwind({
-      applyBaseStyles: true
+      applyBaseStyles: true,
     }),
     vue({
-      appEntrypoint: '/src/pages/vue/_app',
+      appEntrypoint: "/src/pages/vue/_app",
     }),
     solid(),
-  ]
-})
+  ],
+});

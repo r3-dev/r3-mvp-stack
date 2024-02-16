@@ -12,7 +12,7 @@ services:
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     volumes:
-      - pocketbase-data:/dist/pb_data
+      - pocketbase-data:/app/pb_data
     healthcheck: #optional (recommended) since v0.10.0
       test: wget --no-verbose --tries=1 --spider http://localhost:${BACKEND_PORT}/api/health || exit 1
       interval: 5s
