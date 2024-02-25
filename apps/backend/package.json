@@ -4,6 +4,6 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "go run . serve --dir database --http=0.0.0.0:$BACKEND_PORT"
+    "dev": "go run . serve --dir database --http=127.0.0.1:$BACKEND_PORT"
   }
 }
