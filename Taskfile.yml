@@ -1,0 +1,34 @@
+version: "3"
+
+output: prefixed
+
+dotenv: [".env", "{{.ENV}}/.env.", "{{.HOME}}/.env"]
+
+tasks:
+  dev:
+    deps: [dev-backend, dev-frontend]
+
+  dev-backend:
+    deps: [dev-backend-typegen]
+    prefix: "server"
+    dir: server
+    cmds:
+      - echo "Starting the backend server..."
+      - go run . serve --dir database --http=127.0.0.1:$BACKEND_PORT
+
+  dev-frontend:
+    prefix: "client"
+    dir: client
+    cmds:
+      - echo "Starting the frontend dev server..."
+      - pnpm run dev
+
+  dev-backend-typegen:
+    prefix: "typegen"
+    dir: client
+    watch: true
+    cmds:
+      - echo "Generating types..."
+      - pnpm run typegen
+    sources:
+      - "server/migrations/*.go"
