@@ -11,7 +11,6 @@ tasks:
   dev-backend:
     desc: "Start the backend server"
     prefix: "server"
-    deps: [dev-backend-typegen]
     dir: server
     cmds:
       - echo "Starting the backend server..."
@@ -24,13 +23,3 @@ tasks:
     cmds:
       - echo "Starting the frontend dev server..."
       - pnpm run dev
-
-  dev-backend-typegen:
-    desc: "Generate types for the frontend"
-    prefix: "typegen"
-    watch: true
-    cmds:
-      - echo "Generating types..."
-      - cd client && pnpm run typegen
-    sources:
-      - "server/migrations/*.go"

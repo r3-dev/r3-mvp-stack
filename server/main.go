@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	_ "pb-stack/migrations"
+	"pb-stack/typegen"
 
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
@@ -22,6 +23,8 @@ func main() {
 		// (the isGoRun check is to enable it only during development)
 		Automigrate: isGoRun,
 	})
+
+	typegen.Start()
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
