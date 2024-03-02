@@ -9,14 +9,16 @@ tasks:
     deps: [dev-backend, dev-frontend]
 
   dev-backend:
-    deps: [dev-backend-typegen]
+    desc: "Start the backend server"
     prefix: "server"
+    deps: [dev-backend-typegen]
     dir: server
     cmds:
       - echo "Starting the backend server..."
       - go run . serve --dir database --http=127.0.0.1:$BACKEND_PORT
 
   dev-frontend:
+    desc: "Start the frontend dev server"
     prefix: "client"
     dir: client
     cmds:
@@ -24,11 +26,11 @@ tasks:
       - pnpm run dev
 
   dev-backend-typegen:
+    desc: "Generate types for the frontend"
     prefix: "typegen"
-    dir: client
     watch: true
     cmds:
       - echo "Generating types..."
-      - pnpm run typegen
+      - cd client && pnpm run typegen
     sources:
       - "server/migrations/*.go"
