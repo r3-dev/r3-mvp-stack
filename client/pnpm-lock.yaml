@@ -8,6 +8,9 @@ dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.2.61)(react@18.2.0)
+  '@tanstack/react-query':
+    specifier: ^5.24.6
+    version: 5.24.6(react@18.2.0)
   '@tanstack/react-router':
     specifier: ^1.18.3
     version: 1.18.3(react-dom@18.2.0)(react@18.2.0)
@@ -816,6 +819,19 @@ packages:
   /@tanstack/history@1.15.13:
     resolution: {integrity: sha512-ToaeMtK5S4YaxCywAlYexc7KPFN0esjyTZ4vXzJhXEWAkro9iHgh7m/4ozPJb7oTo65WkHWX0W9GjcZbInSD8w==}
     engines: {node: '>=12'}
+
+  /@tanstack/query-core@5.24.6:
+    resolution: {integrity: sha512-xYhxiMUPh1JzamVK8VwwkBpIBXVYRyIBW9gjSN+/BB4kL1nS86gnRWeW8L+sacCj1RiyEsysJe3GSvtbIpHdWw==}
+    dev: false
+
+  /@tanstack/react-query@5.24.6(react@18.2.0):
+    resolution: {integrity: sha512-eyIWwHiO1ZirYGzqs0kfRMkf8icuXroFunjnsgntk9YgGFbGoPs3Hxy9/OushNvpnkHT9RwPZb8UfEKzMzzEaQ==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.24.6
+      react: 18.2.0
+    dev: false
 
   /@tanstack/react-router@1.18.3(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-SaP3myClq8VLrIy+ZCQb+azRa55quWeKVCyjbRZUfNWS0mzRRWkCeNfWBb8M9dYimTLeGHck8GthZDuQBiBkbw==}

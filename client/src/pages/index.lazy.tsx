@@ -1,36 +1,52 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AuthProviderInfo } from "pocketbase";
-import { createLazyFileRoute } from '@tanstack/react-router';
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { usePocketbase } from "@/hooks/pocketbase-hook";
+import { useApi } from "@/hooks/api-hook";
 
-
-export const Route = createLazyFileRoute('/')({
+export const Route = createLazyFileRoute("/")({
   component: LandingPage,
-})
+});
 
 function LandingPage() {
   const pb = usePocketbase();
+  const api = useApi();
 
   const [authProviders, setAuthProviders] = useState<AuthProviderInfo[]>([]);
 
+  const { data: post, isSuccess: postSucces } = api.users.find("");
+
   useEffect(() => {
-    async function listAuthMethods () {
+    if (!post) {
+      return;
+    }
+
+    const userMutation = api.users.delete(post.id, {
+      onSuccess: () => {
+        console.log("User deleted");
+      },
+      onError: (error) => {
+        console.error("Error deleting user", error);
+      },
+    });
+  }, [post, api.users]);
+
+  useEffect(() => {
+    async function listAuthMethods() {
       try {
         const result = await pb.collection("users").listAuthMethods();
-        console.log(result);
         setAuthProviders(result.authProviders);
       } catch (error) {
         console.error("Error listing auth methods", error);
-        
       }
     }
 
     listAuthMethods();
 
     return () => {
-      pb.cancelAllRequests()
-    }
+      pb.cancelAllRequests();
+    };
   }, [pb, setAuthProviders]);
 
   const [count, setCount] = useState(0);
@@ -56,4 +72,3 @@ function LandingPage() {
     </>
   );
 }
-
