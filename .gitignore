@@ -1,6 +1,8 @@
 # build output
 dist/
 .astro/
+dist-ssr
+*.local
 
 # dependencies
 node_modules/
@@ -37,3 +39,13 @@ pnpm-debug.log*
 
 # Turborepo
 .turbo
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
