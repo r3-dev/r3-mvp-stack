@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import PocketBase, { AuthProviderInfo } from "pocketbase";
+import { createLazyFileRoute } from '@tanstack/react-router';
+import { TypedPocketBase } from "@/types/pocketbase-types";
 
-export const LandingPage: React.FC = () => {
-  const pb = new PocketBase("http://localhost:3000");
+
+export const Route = createLazyFileRoute('/')({
+  component: LandingPage,
+})
+
+function LandingPage() {
+  const pb = new PocketBase("http://localhost:3000") as TypedPocketBase
 
   const [authProviders, setAuthProviders] = useState<AuthProviderInfo[]>([]);
 
@@ -39,4 +46,5 @@ export const LandingPage: React.FC = () => {
       </div>
     </>
   );
-};
+}
+
