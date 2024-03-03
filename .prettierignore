@@ -6,16 +6,11 @@ logs
 .turbo
 .astro
 .vscode
-*.json
 *.log*
 *.log
 *.lock
-*.yaml
 *.sh
 *.svg
 *rc.*
-*.htm
-*.html
-*.md
 .*ignore
-/packages/pocketbase/src/types.ts
+/client/src/types/pocketbase-types.ts
