@@ -1,33 +1,42 @@
-import { useState } from "react";
-import reactLogo from "@/assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import PocketBase, { AuthProviderInfo } from "pocketbase";
 
 export const LandingPage: React.FC = () => {
+  const pb = new PocketBase("http://localhost:3000");
+
+  const [authProviders, setAuthProviders] = useState<AuthProviderInfo[]>([]);
+
+  useEffect(() => {
+    const init = async () => {
+      const result = await pb.collection("users").listAuthMethods();
+      console.log(result);
+      setAuthProviders(result.authProviders);
+    };
+
+    init();
+  }, []);
+
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1 className="text-5xl">Vite + React</h1>
       <div className="card">
         <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <h2>Auth Providers</h2>
+        <ul>
+          {authProviders.map((provider) => (
+            <li key={provider.name}>
+              <a href={provider.authUrl}>
+                <Button>Login with {provider.name}</Button>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 };
