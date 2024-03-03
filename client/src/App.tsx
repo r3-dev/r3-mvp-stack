@@ -5,6 +5,9 @@ import './app.css'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
+import { PocketBaseProvider } from './providers/pocketbase-provider'
+import Pocketbase from 'pocketbase'
+import { TypedPocketBase } from './types/pocketbase-types'
 
 // Create a new router instance
 const router = createRouter({ routeTree })
@@ -19,10 +22,13 @@ declare module '@tanstack/react-router' {
 // Render the app
 const rootElement = document.getElementById('app')!
 if (!rootElement.innerHTML) {
+  const pb = new Pocketbase("http://localhost:3000") as TypedPocketBase
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <PocketBaseProvider pb={pb}>
+        <RouterProvider router={router} />
+      </PocketBaseProvider>
     </StrictMode>,
   )
 }

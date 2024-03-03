@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import PocketBase, { AuthProviderInfo } from "pocketbase";
+import { AuthProviderInfo } from "pocketbase";
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { TypedPocketBase } from "@/types/pocketbase-types";
+import { usePocketbase } from "@/hooks/pocketbase-hook";
 
 
 export const Route = createLazyFileRoute('/')({
@@ -10,19 +10,28 @@ export const Route = createLazyFileRoute('/')({
 })
 
 function LandingPage() {
-  const pb = new PocketBase("http://localhost:3000") as TypedPocketBase
+  const pb = usePocketbase();
 
   const [authProviders, setAuthProviders] = useState<AuthProviderInfo[]>([]);
 
   useEffect(() => {
-    const init = async () => {
-      const result = await pb.collection("users").listAuthMethods();
-      console.log(result);
-      setAuthProviders(result.authProviders);
-    };
+    async function listAuthMethods () {
+      try {
+        const result = await pb.collection("users").listAuthMethods();
+        console.log(result);
+        setAuthProviders(result.authProviders);
+      } catch (error) {
+        console.error("Error listing auth methods", error);
+        
+      }
+    }
 
-    init();
-  }, []);
+    listAuthMethods();
+
+    return () => {
+      pb.cancelAllRequests()
+    }
+  }, [pb, setAuthProviders]);
 
   const [count, setCount] = useState(0);
 
