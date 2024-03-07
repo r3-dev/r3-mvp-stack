@@ -5,8 +5,12 @@
 ## Tech Stack
 
 - Frontend
-  - [Astro](https://astro.build)
-  - [TailwindCSS](https://tailwindcss.com)
+
+  - [Vite](https://vitejs.dev)
+  - [SolidJS](https://solidjs.com)
+  - [Router](https://github.com/solidjs/solid-router)
+  - [Shadcn](https://shadcn-solid.vercel.app)
+  - [Pocketbase js-sdk](https://github.com/pocketbase/js-sdk)
   - [TypeScript](https://www.typescriptlang.org)
 
 - Backend
@@ -16,5 +20,5 @@
 ## Scripts
 
 - `pnpm i --frozen-lockfile` — Install dependencies.
-- `pnpm dev` — Starts the application in development mode at (frontend - http://localhost:3001, backend - http://localhost:8090/_/).
+- `pnpm dev` — Starts the application in development mode at (http://localhost:3000).
 - `pnpm format` — Format code using Prettier.
