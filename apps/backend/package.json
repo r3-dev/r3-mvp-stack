@@ -1,0 +1,10 @@
+{
+  "name": "backend",
+  "scripts": {
+    "dev": "go run . serve --dir database --http=127.0.0.1:$BACKEND_PORT",
+    "typegen": "pocketbase-typegen --db database/data.db --out ../../packages/backend-types/index.ts"
+  },
+  "dependencies": {
+    "pocketbase-typegen": "^1.2.1"
+  }
+}
