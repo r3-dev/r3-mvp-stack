@@ -38,6 +38,9 @@ importers:
       '@solidjs/router':
         specifier: ^0.12.4
         version: 0.12.5(solid-js@1.8.15)
+      backend-types:
+        specifier: workspace:^
+        version: link:../../packages/backend-types
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0

@@ -7,9 +7,20 @@ import {
   Card,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { JSX } from "solid-js";
+import { JSX, createEffect } from "solid-js";
+import { Api, authStore } from "@/App";
+import { useNavigate } from "@solidjs/router";
 
 export function SignIn() {
+  const navigate = useNavigate();
+
+  // Redirect to home if user is already logged in
+  createEffect(() => {
+    if (authStore.isValid) {
+      navigate("/");
+    }
+  });
+
   return (
     <>
       <MainLayout>
@@ -22,15 +33,27 @@ export function SignIn() {
               </CardDescription>
             </CardHeader>
             <CardContent class="flex justify-center">
-              <Button class="w-[200px]" variant="outline">
-                <DiscIcon class="mr-2 h-4 w-4" />
-                Login with Discord
-              </Button>
+              <LoginWithDiscordButton />
             </CardContent>
           </Card>
         </div>
       </MainLayout>
     </>
+  );
+}
+
+function LoginWithDiscordButton() {
+  async function handleLogin() {
+    await Api.collection("users").authWithOAuth2({
+      provider: "discord",
+    });
+  }
+
+  return (
+    <Button class="w-[200px]" variant="outline" onClick={handleLogin}>
+      <DiscIcon class="mr-2 h-4 w-4" />
+      Login with Discord
+    </Button>
   );
 }
 

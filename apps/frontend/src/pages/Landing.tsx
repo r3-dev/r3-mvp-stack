@@ -1,5 +1,7 @@
 import { A } from "@solidjs/router";
 import { MainLayout } from "@/layouts/main-layout";
+import { Show } from "solid-js";
+import { authStore } from "@/App";
 
 export function Landing() {
   return (
@@ -15,15 +17,45 @@ export function Landing() {
             </p>
           </div>
           <div class="flex gap-4">
-            <A
-              class="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-              href="/signin"
-            >
-              Sign In
-            </A>
+            <Show when={authStore.user} fallback={<SignInButton />}>
+              {(u) => <Greetings username={u().username} />}
+            </Show>
           </div>
         </div>
       </MainLayout>
     </>
+  );
+}
+
+function Greetings(props: { username: string }) {
+  return (
+    <div class="flex flex-col gap-4">
+      <p>
+        Hi, <span class="">{props.username}</span> 👋🏽
+      </p>
+      <SignOutButton />
+    </div>
+  );
+}
+
+function SignInButton() {
+  return (
+    <A
+      class="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+      href="/signin"
+    >
+      Sign In
+    </A>
+  );
+}
+
+function SignOutButton() {
+  return (
+    <A
+      class="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+      href="/signout"
+    >
+      Sign Out
+    </A>
   );
 }

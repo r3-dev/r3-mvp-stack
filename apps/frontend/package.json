@@ -14,6 +14,7 @@
     "@iconify/tailwind": "^0.1.4",
     "@kobalte/core": "^0.12.2",
     "@solidjs/router": "^0.12.4",
+    "backend-types": "workspace:^",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "pocketbase": "^0.21.1",
