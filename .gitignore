@@ -3,6 +3,7 @@ dist/
 .astro/
 dist-ssr
 *.local
+.vite
 
 # dependencies
 node_modules/
