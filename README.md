@@ -4,18 +4,24 @@
 
 ## Tech Stack
 
+- Сommon
+
+  - [PNPM](https://pnpm.io/) - package manager
+  - [NX](https://nx.dev) - build system
+  - [Docker](https://www.docker.com) - deployment system
+
 - Frontend
 
-  - [Vite](https://vitejs.dev)
-  - [SolidJS](https://solidjs.com)
-  - [Router](https://github.com/solidjs/solid-router)
-  - [Shadcn](https://shadcn-solid.vercel.app)
-  - [Pocketbase js-sdk](https://github.com/pocketbase/js-sdk)
-  - [TypeScript](https://www.typescriptlang.org)
+  - [Vite](https://vitejs.dev) - framework
+  - [SolidJS](https://solidjs.com) - library
+  - [Router](https://github.com/solidjs/solid-router) - for navigation
+  - [Shadcn](https://shadcn-solid.vercel.app) - ui framework
+  - [Pocketbase](https://github.com/pocketbase/js-sdk) - js-sdk for Pocketbase
+  - [TypeScript](https://www.typescriptlang.org) - for type safety
 
 - Backend
-  - [Golang](https://golang.org)
-  - [PocketBase](https://pocketbase.io)
+  - [Golang](https://golang.org) - for performance
+  - [PocketBase](https://pocketbase.io) - Backend As A Service
 
 ## Scripts
 
