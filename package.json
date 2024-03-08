@@ -1,15 +1,12 @@
 {
+  "name": "r3-mvp-stack",
   "private": true,
   "scripts": {
-    "build": "nx run-many -t build",
-    "dev": "nx run-many -t dev",
+    "build": "turbo run build --cache-dir=$(bash scripts/setCacheDir.sh)",
+    "dev": "dotenv -- turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@nx-go/nx-go": "3.0.0-beta.0",
-    "@nx/eslint": "18.0.7",
-    "@nx/vite": "18.0.7",
-    "@nx/web": "18.0.7",
     "@vitest/ui": "^1.3.1",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.57.0",

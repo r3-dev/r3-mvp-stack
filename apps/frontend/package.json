@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "nx build",
+    "build": "vite build",
     "type-check": "tsc",
-    "preview": "nx preview",
+    "preview": "vite preview",
     "ui:add": "pnpm dlx shadcn-solid@latest add"
   },
   "dependencies": {
