@@ -1,10 +1,10 @@
-import { Route, Router } from "@solidjs/router";
+import { Route, Router, useNavigate } from "@solidjs/router";
 import { Landing } from "./pages/Landing";
 import { Features } from "./pages/Features";
 import { NotFound } from "./pages/404";
 import { SignIn } from "./pages/SignIn";
 import PocketBase from "pocketbase";
-import { TypedPocketBase } from "backend-types";
+import { TypedPocketBase, UsersResponse } from "backend-types";
 import { createStore } from "solid-js/store";
 import { SignOut } from "./pages/Signout";
 
@@ -14,7 +14,7 @@ export const Api = new PocketBase() as TypedPocketBase;
 // Create a store to hold the user's authentication state
 export const [authStore, setAuthStore] = createStore({
   token: Api.authStore.token,
-  user: Api.authStore.model,
+  user: Api.authStore.model as UsersResponse | null,
   isValid: Api.authStore.isValid,
 });
 
@@ -22,9 +22,15 @@ export const [authStore, setAuthStore] = createStore({
 Api.authStore.onChange(() => {
   setAuthStore({
     token: Api.authStore.token,
-    user: Api.authStore.model,
+    user: Api.authStore.model as UsersResponse | null,
     isValid: Api.authStore.isValid,
   });
+
+  const navigate = useNavigate();
+
+  if (!Api.authStore.isValid || !Api.authStore.token) {
+    navigate("/signin");
+  }
 });
 
 function App() {

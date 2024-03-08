@@ -7,7 +7,14 @@ import {
   Card,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { JSX, createEffect } from "solid-js";
+import {
+  For,
+  JSX,
+  Match,
+  Switch,
+  createEffect,
+  createResource,
+} from "solid-js";
 import { Api, authStore } from "@/App";
 import { useNavigate } from "@solidjs/router";
 
@@ -42,18 +49,45 @@ export function SignIn() {
   );
 }
 
+async function fetchProviders() {
+  const methods = await Api.collection("users").listAuthMethods();
+
+  return methods.authProviders.map((provider) => provider.name);
+}
+
 function LoginWithDiscordButton() {
-  async function handleLogin() {
+  const [providers] = createResource(fetchProviders);
+
+  async function handleLogin(provider: string) {
     await Api.collection("users").authWithOAuth2({
-      provider: "discord",
+      provider: provider,
     });
   }
 
   return (
-    <Button class="w-[200px]" variant="outline" onClick={handleLogin}>
-      <DiscIcon class="mr-2 h-4 w-4" />
-      Login with Discord
-    </Button>
+    <div class="flex flex-col items-center gap-4">
+      <Switch fallback={<div>Loading...</div>}>
+        <Match when={providers.loading}>Loading...</Match>
+        <Match when={providers.error}>Error: {providers.error.message}</Match>
+        <Match when={providers()}>
+          {(matchedProviders) => (
+            <For each={matchedProviders()}>
+              {(provider) => (
+                <Button
+                  class="w-[200px]"
+                  variant="outline"
+                  onClick={() => handleLogin(provider)}
+                >
+                  <DiscIcon class="mr-2 h-4 w-4" />
+                  Login with{" "}
+                  {provider.charAt(0).toUpperCase() + provider.slice(1)}
+                </Button>
+              )}
+            </For>
+          )}
+        </Match>
+      </Switch>
+    </div>
   );
 }
 

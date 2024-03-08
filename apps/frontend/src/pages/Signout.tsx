@@ -6,7 +6,5 @@ export function SignOut() {
 
   Api.authStore.clear();
 
-  navigate("/");
-
   return null;
 }
