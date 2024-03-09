@@ -22,7 +22,6 @@ func main() {
 
 	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{
 		// enable auto creation of migration files when making collection changes in the Admin UI
-		// (the isGoRun check is to enable it only during development)
 		Automigrate: isDev,
 	})
 
