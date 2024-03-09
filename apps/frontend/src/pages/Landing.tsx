@@ -13,7 +13,7 @@ export function Landing() {
               r3-mvp stack
             </h1>
             <p class="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              The fastest way to build modern web applications.
+              The fastest way to build modern web mvp applications.
             </p>
           </div>
           <div class="flex gap-4">
