@@ -1,6 +1,9 @@
 # build output
 dist/
 .astro/
+dist-ssr
+*.local
+.vite
 
 # dependencies
 node_modules/
@@ -19,6 +22,7 @@ pnpm-debug.log*
 .DS_Store
 
 # Pocketbase database
+backups
 *.db
 *.db-*
 
@@ -37,3 +41,16 @@ pnpm-debug.log*
 
 # Turborepo
 .turbo
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.nx/cache
+out

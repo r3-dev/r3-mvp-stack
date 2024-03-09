@@ -1,0 +1,12 @@
+{
+  "name": "backend-types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pocketbase": "^0.21.1"
+  }
+}

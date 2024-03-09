@@ -1,16 +1,15 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
+  "$schema": "https://turbo.build/schema.json",
   "globalDotEnv": [".env"],
   "pipeline": {
     "build": {
-      "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "lint": {},
     "dev": {
-      "dotEnv": [".env.development.local", ".env.local", ".env.development", ".env"],
-      "dependsOn": ["^build"],
-      "cache": false
+      "cache": false,
+      "persistent": true
     }
   }
 }

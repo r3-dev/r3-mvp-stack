@@ -34,6 +34,7 @@ require (
 	github.com/domodwyer/mailyak/v3 v3.6.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/color v1.15.0 // indirect
+	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/ganigeorgiev/fexpr v0.3.0 // indirect
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0 // indirect

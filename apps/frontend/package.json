@@ -1,27 +1,37 @@
 {
   "name": "frontend",
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "start": "node ./dist/server/entry.mjs",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "vite",
+    "build": "vite build",
+    "type-check": "tsc",
+    "preview": "vite preview",
+    "ui:add": "pnpm dlx shadcn-solid@latest add"
   },
   "dependencies": {
-    "@astrojs/node": "6.0.3",
-    "@astrojs/solid-js": "3.0.2",
-    "@astrojs/tailwind": "5.0.2",
-    "@astrojs/vue": "3.0.4",
-    "@r3-dev/pocketbase": "workspace:^",
-    "@r3-dev/solid": "workspace:^",
-    "@r3-dev/vue": "workspace:^",
-    "astro": "3.5.3",
-    "pinia": "2.1.7",
-    "solid-js": "1.8.5",
-    "tailwindcss": "3.3.5",
-    "vue": "3.3.9",
-    "vue-router": "4.2.5"
+    "@iconify/tailwind": "^0.1.4",
+    "@kobalte/core": "^0.12.2",
+    "@solidjs/router": "^0.12.4",
+    "backend-types": "workspace:^",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "pocketbase": "^0.21.1",
+    "solid-js": "^1.8.15",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vite-plugin-solid": "^2.10.1"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }
