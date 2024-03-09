@@ -17,7 +17,7 @@ import (
 func main() {
 	app := pocketbase.New()
 
-	// loosely check if it was executed using "go run"
+	// loosely check if it was executed using "go run" or from binary
 	isDev := strings.HasPrefix(os.Args[0], os.TempDir())
 
 	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{
