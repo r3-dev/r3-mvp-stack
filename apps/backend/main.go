@@ -28,7 +28,7 @@ func main() {
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
 		// Server public folder
-		e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./public"), false))
+		e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./public"), true))
 
 		dao := app.Dao()
 
