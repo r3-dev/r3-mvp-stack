@@ -1,18 +1,19 @@
 version: "3.7"
 
 services:
-  backend:
+  fullstack:
     build:
       context: .
       dockerfile: Dockerfile
       # reference docker target
-      target: backend 
-    container_name: backend
+      target: fullstack
+    container_name: fullstack
     restart: unless-stopped
+    entrypoint: ./main.bin --dir database serve --http=0.0.0.0:${BACKEND_PORT}
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     volumes:
-      - pocketbase-data:/app/pb_data
+      - database:/app/database
     healthcheck: #optional (recommended) since v0.10.0
       test: wget --no-verbose --tries=1 --spider http://localhost:${BACKEND_PORT}/api/health || exit 1
       interval: 5s
@@ -21,23 +22,5 @@ services:
     env_file:
       - .env
 
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      # reference docker target
-      target: frontend
-    container_name: frontend
-    restart: unless-stopped
-    ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
-    healthcheck: #optional (recommended) since v0.10.0
-      test: wget --no-verbose --tries=1 --spider http://localhost:${FRONTEND_PORT}/functions/health || exit 1
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    env_file:
-      - .env
-
 volumes:
-  pocketbase-data:
+  database:

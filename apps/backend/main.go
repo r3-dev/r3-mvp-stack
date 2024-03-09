@@ -9,6 +9,7 @@ import (
 	"pb-stack/typegen"
 
 	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
@@ -26,6 +27,9 @@ func main() {
 	})
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
+		// Server public folder
+		e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./public"), false))
+
 		dao := app.Dao()
 
 		settings, err := dao.FindSettings()
