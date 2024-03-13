@@ -56,5 +56,6 @@ func WatchMigrationFolder() {
 }
 
 func Start() {
+	fmt.Println("Starting migration watcher...")
 	go WatchMigrationFolder()
 }
