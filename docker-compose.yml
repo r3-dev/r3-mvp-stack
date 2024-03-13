@@ -1,19 +1,21 @@
 version: "3.7"
 
 services:
-  fullstack:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
       # reference docker target
-      target: fullstack
-    container_name: fullstack
+      target: go-pipeline
+      args:
+        PROJECT: backend
     restart: unless-stopped
-    entrypoint: ./main.bin --dir database serve --http=0.0.0.0:${BACKEND_PORT}
+    entrypoint: ./main --dir database serve --http=0.0.0.0:${BACKEND_PORT}
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     volumes:
       - database:/app/database
+      - frontend-public:/app/public
     healthcheck: #optional (recommended) since v0.10.0
       test: wget --no-verbose --tries=1 --spider http://localhost:${BACKEND_PORT}/api/health || exit 1
       interval: 5s
@@ -21,6 +23,18 @@ services:
       retries: 5
     env_file:
       - .env
+  
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # reference docker target
+      target: node-pipeline-static
+      args:
+        PROJECT: frontend
+    volumes:
+      - frontend-public:/app/public
 
 volumes:
   database:
+  frontend-public:

@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 	"strings"
+	typegen "typegen"
 
-	_ "pb-stack/migrations"
-	"pb-stack/typegen"
+	_ "backend/migrations"
 
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+	// fmt.Println(testgo.TestGo())
 	app := pocketbase.New()
 
 	// loosely check if it was executed using "go run" or from binary
@@ -42,7 +43,9 @@ func main() {
 		return dao.SaveSettings(settings)
 	})
 
-	typegen.Start()
+	if isDev {
+		typegen.Start()
+	}
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)

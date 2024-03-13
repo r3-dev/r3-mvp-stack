@@ -4,8 +4,7 @@
   "scripts": {
     "build": "turbo run build --cache-dir=$(bash scripts/setCacheDir.sh)",
     "dev": "dotenv -- turbo dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prune:all": "turbo prune backend frontend --docker"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@vitest/ui": "^1.3.1",

@@ -20,39 +20,42 @@ FROM turbo-base AS r3mvp-base
 COPY --from=golang-base /usr/local/go/ /usr/local/go/
 ENV PATH="$PATH:/usr/local/go/bin"
 ENV PATH="$PATH:/root/go/bin"
+RUN go env -w GOCACHE=/go-cache
+RUN go env -w GOMODCACHE=/gomod-cache
 
 # Setup pruner
 FROM r3mvp-base as pruner
+ARG PROJECT
 WORKDIR /project
 COPY ./ ./
-RUN turbo prune backend frontend --docker
-# TODO: Add golang pruner script
+RUN ./pruner-linux -p ${PROJECT}
+RUN turbo prune ${PROJECT} --docker
 
-# Build the project
-FROM r3mvp-base AS builder
+# Install node dependencies and copy project files
+FROM r3mvp-base AS node-installer
 WORKDIR /project
 # Install node dependencies
-COPY --from=pruner /project/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=pruner /project/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY --from=pruner /project/out/json .
 RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm install --frozen-lockfile
+
 # Install golang dependencies
-COPY --from=pruner /project/go.work ./go.work
-COPY --from=pruner /project/go.work.sum ./go.work.sum
-COPY --from=pruner /project/apps/backend/go.mod ./apps/backend/go.mod
-RUN --mount=type=cache,id=go,target=~/.cache/go-build go mod download
+FROM node-installer AS go-installer
+RUN --mount=type=cache,target=/gomod-cache go mod download
+
+
+# Build the project as a go app
+FROM go-installer AS go-builder
+ARG PROJECT
 # Copy project files
 COPY --from=pruner /project/out/full/ .
-# Build the project
-RUN --mount=type=cache,id=turbo,target=.turbo turbo build --cache-dir=.turbo
+RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
 
-# Fullstack image = backend + frontend static
-FROM alpine:${ALPINE_VERSION} AS fullstack
-WORKDIR /app
-# Copy backend
-COPY --from=builder /project/apps/backend/dist/main.bin ./
-# Copy frontend static
-COPY --from=builder /project/apps/frontend/dist ./public
+# Build the project as a node app
+FROM node-installer AS node-builder
+ARG PROJECT
+# Copy project files
+COPY --from=pruner /project/out/full/ .
+RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
 
 # TODO: Add support for js hooks and migrations
 # # Copy the local migrations dir into the image
@@ -61,20 +64,25 @@ COPY --from=builder /project/apps/frontend/dist ./public
 # COPY --from=builder ./pb_hooks /pb/pb_hooks
 
 ##############
-# Templates
+# DOCKER-COMPOSE TARGET PIPELINES
 ##############
 
-FROM node_base as node_prod_base
+FROM node-base as node-pipeline
+ARG PROJECT
 WORKDIR /app
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc docker-entrypoint.sh ./
-RUN chmod +x docker-entrypoint.sh
-RUN npm i -g pnpm@8
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+COPY --from=node-builder /project/apps/${PROJECT}/dist ./
 
 ##############
 
-FROM golang-base as go_prod_base
+FROM alpine:${ALPINE_VERSION} as node-pipeline-static
+ARG PROJECT
 WORKDIR /app
-COPY docker-entrypoint.sh /app/
-RUN chmod +x /app/docker-entrypoint.sh
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+COPY --from=node-builder /project/apps/${PROJECT}/dist ./public
+CMD [ "echo", "Static files are ready to use." ]
+
+##############
+
+FROM alpine:${ALPINE_VERSION} as go-pipeline
+ARG PROJECT
+WORKDIR /app
+COPY --from=go-builder /project/apps/${PROJECT}/dist ./
