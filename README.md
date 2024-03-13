@@ -7,7 +7,7 @@
 - Сommon
 
   - [PNPM](https://pnpm.io/) - package manager
-  - [NX](https://nx.dev) - build system
+  - [Turbo](https://turbo.build) - build system
   - [Docker](https://www.docker.com) - deployment system
 
 - Frontend
@@ -16,7 +16,7 @@
   - [SolidJS](https://solidjs.com) - library
   - [Router](https://github.com/solidjs/solid-router) - for navigation
   - [Shadcn](https://shadcn-solid.vercel.app) - ui framework
-  - [Pocketbase](https://github.com/pocketbase/js-sdk) - js-sdk for Pocketbase
+  - [PocketBase SDK](https://github.com/pocketbase/js-sdk) - js-sdk for Pocketbase
   - [TypeScript](https://www.typescriptlang.org) - for type safety
 
 - Backend
