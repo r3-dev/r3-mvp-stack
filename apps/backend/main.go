@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -15,7 +16,7 @@ import (
 )
 
 func main() {
-	// fmt.Println(testgo.TestGo())
+	fmt.Println("Backend is spinning up...")
 	app := pocketbase.New()
 
 	// loosely check if it was executed using "go run" or from binary
