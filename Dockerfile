@@ -41,7 +41,7 @@ RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm install --frozen-lockfi
 
 # Install golang dependencies
 FROM node-installer AS go-installer
-RUN --mount=type=cache,target=/gomod-cache go mod download
+RUN --mount=type=cache,id=gomod,target=/gomod-cache go mod download
 
 
 # Build the project as a go app
@@ -49,14 +49,14 @@ FROM go-installer AS go-builder
 ARG PROJECT
 # Copy project files
 COPY --from=pruner /project/out/full/ .
-RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
+RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,id=gomod,target=/gomod-cache --mount=type=cache,id=go,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
 
 # Build the project as a node app
 FROM node-installer AS node-builder
 ARG PROJECT
 # Copy project files
 COPY --from=pruner /project/out/full/ .
-RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
+RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,id=gomod,target=/gomod-cache --mount=type=cache,id=go,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
 
 # TODO: Add support for js hooks and migrations
 # # Copy the local migrations dir into the image
