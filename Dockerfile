@@ -28,7 +28,8 @@ FROM r3mvp-base as pruner
 ARG PROJECT
 WORKDIR /project
 COPY ./ ./
-RUN ./pruner-linux -p ${PROJECT}
+RUN chmod +x ./pruner/runPruner.sh
+RUN sh ./pruner/runPruner.sh -p ${PROJECT}
 RUN turbo prune ${PROJECT} --docker
 
 # Install node dependencies and copy project files
