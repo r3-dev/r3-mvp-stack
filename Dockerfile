@@ -12,7 +12,7 @@ FROM golang:${GOLANG_VERSION}-alpine AS golang-base
 
 # Setup pnpm and turbo
 FROM node-base as turbo-base
-RUN npm install pnpm turbo --global
+RUN npm install pnpm turbo turbobuild-prune-go --global
 RUN pnpm config set store-dir ~/.pnpm-store
 
 # Setup Golang
@@ -28,8 +28,7 @@ FROM r3mvp-base as pruner
 ARG PROJECT
 WORKDIR /project
 COPY ./ ./
-RUN chmod +x ./pruner/runPruner.sh
-RUN sh ./pruner/runPruner.sh -p ${PROJECT}
+RUN turbobuild-prune-go -p ${PROJECT}
 RUN turbo prune ${PROJECT} --docker
 
 # Install node dependencies and copy project files

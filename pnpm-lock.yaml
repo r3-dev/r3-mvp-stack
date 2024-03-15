@@ -26,6 +26,9 @@ importers:
       turbo:
         specifier: ^1.12.4
         version: 1.12.5
+      turbobuild-prune-go:
+        specifier: ^1.0.8
+        version: 1.0.8
       vite:
         specifier: ~5.0.0
         version: 5.0.12
@@ -618,6 +621,11 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@go-task/go-npm@0.2.0:
+    resolution: {integrity: sha512-vQbdtBvesHm8EUFHX8QKg4rbBodmu9VsAXH1ozpbiN5jdTMOYHTCMM31EurAYmY+rNNtxJQ4JGy6t383RPlqbw==}
+    hasBin: true
+    dev: true
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -3609,9 +3617,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.0
@@ -3958,6 +3963,13 @@ packages:
       turbo-linux-arm64: 1.12.5
       turbo-windows-64: 1.12.5
       turbo-windows-arm64: 1.12.5
+    dev: true
+
+  /turbobuild-prune-go@1.0.8:
+    resolution: {integrity: sha512-J7ai+Yv2wBKGaD92pCiSD8l0eGkCyl8NEFZgkr+SNRUqaMKJbBd28Zf1KiTnyk5/08QPoDxCRM/oZdQ+epyQEg==}
+    requiresBuild: true
+    dependencies:
+      '@go-task/go-npm': 0.2.0
     dev: true
 
   /type-check@0.4.0:
