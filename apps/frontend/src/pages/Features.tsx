@@ -7,7 +7,7 @@ export function Features() {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout title="Features">
         <div class="container py-6 flex flex-col items-center justify-center gap-4 px-4 sm:gap-10 md:gap-16 md:px-6 lg:gap-20">
           <div class="space-y-2 text-left">
             <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">

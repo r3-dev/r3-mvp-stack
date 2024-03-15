@@ -30,13 +30,13 @@ export function SignIn() {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout title="Sign In">
         <div class="container py-6 flex flex-col items-center justify-center gap-4 px-4 sm:gap-10 md:gap-16 md:px-6 lg:gap-20">
           <Card class="w-full max-w-sm">
             <CardHeader class="text-center">
               <CardTitle class="text-3xl">Sign In</CardTitle>
               <CardDescription>
-                This app uses Discord for authentication.
+                This app uses Discord for authentication, because nobody remebmers passwords anymore.
               </CardDescription>
             </CardHeader>
             <CardContent class="flex justify-center">

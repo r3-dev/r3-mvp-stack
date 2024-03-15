@@ -7,6 +7,7 @@ import PocketBase from "pocketbase";
 import { TypedPocketBase, UsersResponse } from "backend-types";
 import { createStore } from "solid-js/store";
 import { SignOut } from "./pages/Signout";
+import { MetaProvider } from "@solidjs/meta";
 
 // Use the PocketBase instance to make API requests
 export const Api = new PocketBase() as TypedPocketBase;
@@ -35,13 +36,15 @@ Api.authStore.onChange(() => {
 
 function App() {
   return (
-    <Router>
-      <Route path="/" component={Landing} />
-      <Route path="/signin" component={SignIn} />
-      <Route path="/signout" component={SignOut} />
-      <Route path="/features" component={Features} />
-      <Route path="*404" component={NotFound} />
-    </Router>
+    <MetaProvider>
+      <Router>
+        <Route path="/" component={Landing} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signout" component={SignOut} />
+        <Route path="/features" component={Features} />
+        <Route path="*404" component={NotFound} />
+      </Router>
+    </MetaProvider>
   );
 }
 

@@ -13,6 +13,7 @@
   "dependencies": {
     "@iconify/tailwind": "^0.1.4",
     "@kobalte/core": "^0.12.3",
+    "@solidjs/meta": "^0.29.3",
     "@solidjs/router": "^0.12.4",
     "backend-types": "workspace:^",
     "class-variance-authority": "^0.7.0",
