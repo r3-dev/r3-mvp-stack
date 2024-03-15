@@ -15,7 +15,7 @@
   - [Vite](https://vitejs.dev) - framework
   - [SolidJS](https://solidjs.com) - library
   - [Router](https://github.com/solidjs/solid-router) - for navigation
-  - [Shadcn](https://shadcn-solid.vercel.app) - ui framework
+  - [Shadcn](https://solid-ui.com) - ui framework
   - [PocketBase SDK](https://github.com/pocketbase/js-sdk) - js-sdk for Pocketbase
   - [TypeScript](https://www.typescriptlang.org) - for type safety
 

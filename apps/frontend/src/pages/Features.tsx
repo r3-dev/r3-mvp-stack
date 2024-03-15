@@ -1,6 +1,10 @@
+import { Input } from "@/components/ui/input";
 import { MainLayout } from "@/layouts/main-layout";
+import { Show, createSignal } from "solid-js";
 
 export function Features() {
+  const [usersFeature, setUsersFeature] = createSignal<string>("");
+
   return (
     <>
       <MainLayout>
@@ -20,8 +24,18 @@ export function Features() {
                 <li>Modern</li>
                 <li>Scalable</li>
                 <li>Open Source</li>
+                <Show when={usersFeature()}>
+                  {
+                    (feature) => {
+                      return (
+                        <li>{feature()}</li>
+                      );
+                    }
+                  }
+                </Show>
               </ul>
             </div>
+              <Input id="your-feature-input" value={usersFeature()} onInput={(e) => setUsersFeature(e.target.value)} placeholder="Add your feature here"/>
           </div>
         </div>
       </MainLayout>

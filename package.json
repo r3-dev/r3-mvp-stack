@@ -2,7 +2,7 @@
   "name": "r3-mvp-stack",
   "private": true,
   "scripts": {
-    "build": "turbo run build --cache-dir=$(bash scripts/setCacheDir.sh)",
+    "build": "turbo run build --cache-dir=.turbo",
     "dev": "dotenv -- turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
