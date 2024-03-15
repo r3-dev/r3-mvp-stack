@@ -15,6 +15,7 @@
     "@kobalte/core": "^0.12.3",
     "@solidjs/meta": "^0.29.3",
     "@solidjs/router": "^0.12.4",
+    "@tanstack/solid-query": "^5.28.4",
     "backend-types": "workspace:^",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

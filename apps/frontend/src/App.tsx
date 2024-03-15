@@ -8,6 +8,7 @@ import { TypedPocketBase, UsersResponse } from "backend-types";
 import { createStore } from "solid-js/store";
 import { SignOut } from "./pages/Signout";
 import { MetaProvider } from "@solidjs/meta";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 
 // Use the PocketBase instance to make API requests
 export const Api = new PocketBase() as TypedPocketBase;
@@ -34,9 +35,12 @@ Api.authStore.onChange(() => {
   }
 });
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <MetaProvider>
+    <QueryClientProvider client={queryClient}>
       <Router>
         <Route path="/" component={Landing} />
         <Route path="/signin" component={SignIn} />
@@ -44,6 +48,7 @@ function App() {
         <Route path="/features" component={Features} />
         <Route path="*404" component={NotFound} />
       </Router>
+    </QueryClientProvider>
     </MetaProvider>
   );
 }

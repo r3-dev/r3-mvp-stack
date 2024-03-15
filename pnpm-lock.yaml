@@ -59,6 +59,9 @@ importers:
       '@solidjs/router':
         specifier: ^0.12.4
         version: 0.12.5(solid-js@1.8.15)
+      '@tanstack/solid-query':
+        specifier: ^5.28.4
+        version: 5.28.4(solid-js@1.8.15)
       backend-types:
         specifier: workspace:^
         version: link:../../packages/backend-types
@@ -1112,6 +1115,19 @@ packages:
     resolution: {integrity: sha512-aYX01Ke9hunpoCexYAgQucEpARGQ5w/cqHFrIR+e9gdKb1QWTsVJuTJ2ozQzIAxLyRQe/m+2RqzkyOOGiMKRQA==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@tanstack/query-core@5.28.4:
+    resolution: {integrity: sha512-uQZqOFqLWUvXNIQZ63XdKzg22NtHzgCBUfDmjDHi3BoF+nUYeBNvMi/xFPtFrMhqRzG2Ir4mYaGsWZzmiEjXpA==}
+    dev: false
+
+  /@tanstack/solid-query@5.28.4(solid-js@1.8.15):
+    resolution: {integrity: sha512-mAoQmb5f88NcKHd3hei3MV7i2ent1qE7N5KukeY9pji5pX3Kh8I6uhMfBnqJIc5+w7BtMm0jqTw9NawgnQ+x6g==}
+    peerDependencies:
+      solid-js: ^1.6.0
+    dependencies:
+      '@tanstack/query-core': 5.28.4
+      solid-js: 1.8.15
     dev: false
 
   /@tootallnate/once@1.1.2:

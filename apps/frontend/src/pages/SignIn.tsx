@@ -17,6 +17,7 @@ import {
 } from "solid-js";
 import { Api, authStore } from "@/App";
 import { useNavigate } from "@solidjs/router";
+import { createMutation } from "@tanstack/solid-query";
 
 export function SignIn() {
   const navigate = useNavigate();
@@ -57,12 +58,17 @@ async function fetchProviders() {
 
 function LoginWithDiscordButton() {
   const [providers] = createResource(fetchProviders);
-
-  async function handleLogin(provider: string) {
-    await Api.collection("users").authWithOAuth2({
-      provider: provider,
-    });
-  }
+  
+  const auth = createMutation(() => {
+    return {
+      mutationKey: ["signin"],
+      mutationFn: (provider: string) => {
+        return Api.collection("users").authWithOAuth2({
+          provider: provider,
+        });
+      }
+    }
+  })
 
   return (
     <div class="flex flex-col items-center gap-4">
@@ -76,7 +82,8 @@ function LoginWithDiscordButton() {
                 <Button
                   class="w-[200px]"
                   variant="outline"
-                  onClick={() => handleLogin(provider)}
+                  onClick={() => auth.mutate(provider)}
+                  disabled={auth.isPending}
                 >
                   <DiscIcon class="mr-2 h-4 w-4" />
                   Login with{" "}
