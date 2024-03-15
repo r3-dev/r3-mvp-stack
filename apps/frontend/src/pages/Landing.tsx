@@ -10,7 +10,7 @@ export function Landing() {
         <div class="container py-6 flex flex-col items-center justify-center gap-4 px-4 sm:gap-10 md:gap-16 md:px-6 lg:gap-20">
           <div class="space-y-2 text-center">
             <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-              r3-mvp turbo stack
+              r3-mvp stack
             </h1>
             <p class="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               The fastest way to build modern web mvp applications.
