@@ -57,12 +57,6 @@ ARG PROJECT
 COPY --from=pruner /project/out/full/ .
 RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,id=gomod,target=/gomod-cache --mount=type=cache,id=go,target=/go-cache turbo build --cache-dir=.turbo --filter=${PROJECT}
 
-# TODO: Add support for js hooks and migrations
-# # Copy the local migrations dir into the image
-# COPY --from=builder /project/app/backend/migration ./migrations
-# # uncomment to copy the local pb_hooks dir into the image
-# COPY --from=builder ./pb_hooks /pb/pb_hooks
-
 ##############
 # DOCKER-COMPOSE TARGET PIPELINES
 ##############
