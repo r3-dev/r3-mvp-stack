@@ -5,10 +5,12 @@ import { resolve } from "node:path";
 const backendBaseUrl =
   process.env.PUBLIC_BACKEND_URL || "http://127.0.0.1:8090";
 
+const port = process.env.FRONTEND_PORT ? parseInt(process.env.FRONTEND_PORT) : 3000;
+
 export default defineConfig({
   plugins: [solid()],
   server: {
-    port: 3000,
+    port: port,
     proxy: {
       "/api": {
         target: backendBaseUrl,
