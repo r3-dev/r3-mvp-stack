@@ -1,6 +1,6 @@
 module backend
 
-go 1.21
+go 1.22
 
 require (
 	github.com/pocketbase/dbx v1.10.0

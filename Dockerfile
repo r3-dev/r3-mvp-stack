@@ -1,6 +1,6 @@
-ARG NODE_VERSION=20.11.1
-ARG GOLANG_VERSION=1.21.5
-ARG ALPINE_VERSION=3.19.1
+ARG NODE_VERSION=20.11
+ARG GOLANG_VERSION=1.22
+ARG ALPINE_VERSION=3.19
 
 # Node base image
 FROM node:${NODE_VERSION}-alpine AS node-base
@@ -77,7 +77,7 @@ COPY --from=node-builder /project/apps/${PROJECT}/dist ./
 FROM alpine:${ALPINE_VERSION} as node-pipeline-static
 ARG PROJECT
 WORKDIR /app
-COPY --from=node-builder /project/apps/${PROJECT}/dist ./public
+COPY --from=node-builder /project/apps/${PROJECT}/dist ./
 CMD [ "echo", "Static files are ready to use." ]
 
 ##############
