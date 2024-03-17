@@ -82,7 +82,7 @@ FROM alpine-base as node-pipeline-static
 ARG PROJECT
 COPY --from=node-builder /project/apps/${PROJECT}/dist /app-tmp
 # Copy files should be done only in runtime to avoid beeing replaced by the volume
-CMD cp -R /app-tmp/. /app/ ; rm -rf /app-tmp
+CMD cp -R /app-tmp/. /app/ ; rm -rf /app-tmp ; echo "Static files successfully updated!"
 
 # Golang app pipeline
 FROM alpine-base as go-pipeline
