@@ -2,6 +2,10 @@ ARG NODE_VERSION=20.11
 ARG GOLANG_VERSION=1.22
 ARG ALPINE_VERSION=3.19
 
+##############
+# BASE IMAGES
+##############
+
 # Node base image
 FROM node:${NODE_VERSION}-alpine AS node-base
 RUN apk update
@@ -9,6 +13,13 @@ RUN apk add --no-cache libc6-compat git
 
 # Golang base image
 FROM golang:${GOLANG_VERSION}-alpine AS golang-base
+
+# Alpine base image
+FROM alpine:${ALPINE_VERSION} AS alpine-base
+
+##############
+# PIPELINE STAGES
+##############
 
 # Setup pnpm and turbo
 FROM node-base as turbo-base
@@ -42,7 +53,6 @@ RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm install --frozen-lockfi
 FROM node-installer AS go-installer
 RUN --mount=type=cache,id=gomod,target=/gomod-cache go mod download
 
-
 # Build the project as a go app
 FROM go-installer AS go-builder
 ARG PROJECT
@@ -68,13 +78,13 @@ WORKDIR /app
 COPY --from=node-builder /project/apps/${PROJECT}/dist ./
 
 # Node app pipeline without node runtime (for static files)
-FROM alpine:${ALPINE_VERSION} as node-pipeline-static
+FROM alpine-base as node-pipeline-static
 ARG PROJECT
 COPY --from=node-builder /project/apps/${PROJECT}/dist /app-tmp
 CMD cp -R /app-tmp/. /app/ ; rm -rf /app-tmp
 
 # Golang app pipeline
-FROM alpine:${ALPINE_VERSION} as go-pipeline
+FROM alpine-base as go-pipeline
 ARG PROJECT
 WORKDIR /app
 COPY --from=go-builder /project/apps/${PROJECT}/dist ./
