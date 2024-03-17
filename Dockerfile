@@ -61,21 +61,19 @@ RUN --mount=type=cache,id=turbo,target=.turbo --mount=type=cache,id=gomod,target
 # DOCKER-COMPOSE TARGET PIPELINES
 ##############
 
+# Node app pipeline
 FROM node-base as node-pipeline
 ARG PROJECT
 WORKDIR /app
 COPY --from=node-builder /project/apps/${PROJECT}/dist ./
 
-##############
-
+# Node app pipeline without node runtime (for static files)
 FROM alpine:${ALPINE_VERSION} as node-pipeline-static
 ARG PROJECT
-WORKDIR /app
-COPY --from=node-builder /project/apps/${PROJECT}/dist ./
-CMD [ "echo", "Static files are ready to use." ]
+COPY --from=node-builder /project/apps/${PROJECT}/dist /app-tmp
+CMD cp -R /app-tmp/. /app/ ; rm -rf /app-tmp
 
-##############
-
+# Golang app pipeline
 FROM alpine:${ALPINE_VERSION} as go-pipeline
 ARG PROJECT
 WORKDIR /app
