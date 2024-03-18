@@ -25,7 +25,8 @@
 
 ## Scripts
 
-- `pnpm i --frozen-lockfile` — Install dependencies.
+- `pnpm i --frozen-lockfile` — Install node dependencies.
+- `go mod download` — Install golang dependencies.
 - `pnpm dev` — Starts the application in development mode at (http://localhost:3000).
 - `pnpm format` — Format code using Prettier.
 

@@ -59,9 +59,6 @@ importers:
       backend-api:
         specifier: workspace:*
         version: link:../../packages/backend-api
-      backend-types:
-        specifier: workspace:^
-        version: link:../../packages/backend-types
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -105,9 +102,6 @@ importers:
 
   packages/backend-api:
     dependencies:
-      backend-types:
-        specifier: workspace:*
-        version: link:../backend-types
       pocketbase:
         specifier: ^0.21.1
         version: 0.21.1
@@ -115,12 +109,6 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.4.2
-
-  packages/backend-types:
-    dependencies:
-      pocketbase:
-        specifier: ^0.21.1
-        version: 0.21.1
 
   packages/typegen: {}
 
