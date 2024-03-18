@@ -13,6 +13,8 @@ import (
 )
 
 func WatchMigrationFolder() {
+	generateTypes()
+
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		fmt.Println("Error creating watcher:", err)
@@ -39,12 +41,7 @@ func WatchMigrationFolder() {
 			if shouldGenerate {
 				fmt.Println("Migration created:", event.Name)
 				// Trigger typegen to regenerate types for the client
-				cmd := exec.Command("pnpm", "typegen")
-				cmd.Stdout = os.Stdout // Redirect stdout to os.Stdout
-				err := cmd.Run()
-				if err != nil {
-					log.Fatalf("cmd.Run() failed with %s\n", err)
-				}
+				generateTypes()
 			}
 		case err, ok := <-watcher.Errors:
 			if !ok {
@@ -52,6 +49,15 @@ func WatchMigrationFolder() {
 			}
 			fmt.Println("Error:", err)
 		}
+	}
+}
+
+func generateTypes() {
+	cmd := exec.Command("pnpm", "typegen")
+	cmd.Stdout = os.Stdout // Redirect stdout to os.Stdout
+	err := cmd.Run()
+	if err != nil {
+		log.Fatalf("cmd.Run() failed with %s\n", err)
 	}
 }
 
