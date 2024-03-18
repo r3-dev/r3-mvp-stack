@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "ui-solid/components/ui/input";
 import { MainLayout } from "@/layouts/main-layout";
 import { Show, createSignal } from "solid-js";
 

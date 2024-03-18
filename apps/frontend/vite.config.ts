@@ -23,6 +23,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      "@/lib/utils": resolve(__dirname, "..", "..", "packages", "ui-solid", "src", "lib", "utils"),
       "@": resolve(__dirname, "./src"),
     },
   },

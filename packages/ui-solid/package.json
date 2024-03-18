@@ -1,0 +1,31 @@
+{
+  "name": "ui-solid",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "ui:add": "pnpm dlx solidui-cli@latest add"
+  },
+  "dependencies": {
+    "@iconify/tailwind": "^0.1.4",
+    "@kobalte/core": "^0.12.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "solid-js": "^1.8.15",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2"
+  },
+  "exports": {
+    "./global.css": "./src/global.css",
+    "./postcss.config": "./postcss.config.js",
+    "./tailwind.config": "./tailwind.config.cjs",
+    "./lib/*": "./src/lib/*.ts",
+    "./components/*": "./src/components/*.tsx"
+  },
+  "packageManager": "pnpm@8.15.4"
+}
