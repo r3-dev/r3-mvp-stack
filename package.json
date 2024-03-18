@@ -5,7 +5,9 @@
     "build": "turbo run build --cache-dir=.turbo",
     "dev": "dotenv -- turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui-solid:add": "pnpm --filter ui-solid ui:add"
+    "ui-solid:add": "pnpm --filter ui-solid ui:add",
+    "postinstall": "git remote add template https://github.com/r3-dev/r3-mvp-stack",
+    "r3mvp:update": "git fetch --all && git merge template/main --allow-unrelated-histories"
   },
   "devDependencies": {
     "@vitest/ui": "^1.3.1",
