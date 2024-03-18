@@ -56,6 +56,9 @@ importers:
       '@tanstack/solid-query':
         specifier: ^5.28.4
         version: 5.28.4(solid-js@1.8.15)
+      backend-api:
+        specifier: workspace:*
+        version: link:../../packages/backend-api
       backend-types:
         specifier: workspace:^
         version: link:../../packages/backend-types
@@ -99,6 +102,19 @@ importers:
       vite-plugin-solid:
         specifier: ^2.10.1
         version: 2.10.1(solid-js@1.8.15)(vite@5.1.5)
+
+  packages/backend-api:
+    dependencies:
+      backend-types:
+        specifier: workspace:*
+        version: link:../backend-types
+      pocketbase:
+        specifier: ^0.21.1
+        version: 0.21.1
+    devDependencies:
+      typescript:
+        specifier: ^5.2.2
+        version: 5.4.2
 
   packages/backend-types:
     dependencies:

@@ -3,34 +3,32 @@ import { Landing } from "./pages/Landing";
 import { Features } from "./pages/Features";
 import { NotFound } from "./pages/404";
 import { SignIn } from "./pages/SignIn";
-import PocketBase from "pocketbase";
-import { TypedPocketBase, UsersResponse } from "backend-types";
+import { UsersResponse } from "backend-api/types";
 import { createStore } from "solid-js/store";
 import { SignOut } from "./pages/Signout";
 import { MetaProvider } from "@solidjs/meta";
 import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
+import { BackendApi } from "backend-api";
 
-// Use the PocketBase instance to make API requests
-export const Api = new PocketBase() as TypedPocketBase;
 
 // Create a store to hold the user's authentication state
 export const [authStore, setAuthStore] = createStore({
-  token: Api.authStore.token,
-  user: Api.authStore.model as UsersResponse | null,
-  isValid: Api.authStore.isValid,
+  token: BackendApi.authStore.token,
+  user: BackendApi.authStore.model as UsersResponse | null,
+  isValid: BackendApi.authStore.isValid,
 });
 
 // Update the store when the user's authentication state changes
-Api.authStore.onChange(() => {
+BackendApi.authStore.onChange(() => {
   setAuthStore({
-    token: Api.authStore.token,
-    user: Api.authStore.model as UsersResponse | null,
-    isValid: Api.authStore.isValid,
+    token: BackendApi.authStore.token,
+    user: BackendApi.authStore.model as UsersResponse | null,
+    isValid: BackendApi.authStore.isValid,
   });
 
   const navigate = useNavigate();
 
-  if (!Api.authStore.isValid || !Api.authStore.token) {
+  if (!BackendApi.authStore.isValid || !BackendApi.authStore.token) {
     navigate("/signin");
   }
 });

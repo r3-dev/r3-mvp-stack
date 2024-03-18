@@ -15,9 +15,10 @@ import {
   createEffect,
   createResource,
 } from "solid-js";
-import { Api, authStore } from "@/App";
+import { authStore } from "@/App";
 import { useNavigate } from "@solidjs/router";
 import { createMutation } from "@tanstack/solid-query";
+import { BackendApi } from "backend-api";
 
 export function SignIn() {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export function SignIn() {
 }
 
 async function fetchProviders() {
-  const methods = await Api.collection("users").listAuthMethods();
+  const methods = await BackendApi.collection("users").listAuthMethods();
 
   return methods.authProviders.map((provider) => provider.name);
 }
@@ -63,7 +64,7 @@ function LoginWithDiscordButton() {
     return {
       mutationKey: ["signin"],
       mutationFn: (provider: string) => {
-        return Api.collection("users").authWithOAuth2({
+        return BackendApi.collection("users").authWithOAuth2({
           provider: provider,
         });
       }

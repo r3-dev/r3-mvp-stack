@@ -14,13 +14,13 @@
     "@solidjs/meta": "^0.29.3",
     "@solidjs/router": "^0.12.4",
     "@tanstack/solid-query": "^5.28.4",
-    "backend-types": "workspace:^",
     "clsx": "^2.1.0",
     "pocketbase": "^0.21.1",
     "solid-js": "^1.8.15",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "ui-solid": "workspace:*"
+    "ui-solid": "workspace:*",
+    "backend-api": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

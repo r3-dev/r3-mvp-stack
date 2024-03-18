@@ -1,7 +1,8 @@
-import { Api } from "@/App";
+import { BackendApi } from "backend-api";
+
 
 export function SignOut() {
-  Api.authStore.clear();
+  BackendApi.authStore.clear();
 
   return null;
 }

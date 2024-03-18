@@ -1,0 +1,14 @@
+{
+  "name": "backend-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "pocketbase": "^0.21.1",
+    "backend-types": "workspace:*"
+  }
+}
