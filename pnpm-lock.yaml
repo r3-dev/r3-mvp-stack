@@ -47,9 +47,6 @@ importers:
       '@iconify/tailwind':
         specifier: ^0.1.4
         version: 0.1.4
-      '@kobalte/core':
-        specifier: ^0.12.3
-        version: 0.12.3(solid-js@1.8.15)
       '@solidjs/meta':
         specifier: ^0.29.3
         version: 0.29.3(solid-js@1.8.15)
@@ -62,9 +59,6 @@ importers:
       backend-types:
         specifier: workspace:^
         version: link:../../packages/backend-types
-      class-variance-authority:
-        specifier: ^0.7.0
-        version: 0.7.0
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -80,6 +74,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.1)
+      ui-solid:
+        specifier: workspace:*
+        version: link:../../packages/ui-solid
     devDependencies:
       '@types/node':
         specifier: ^20.11.24
@@ -110,6 +107,43 @@ importers:
         version: 0.21.1
 
   packages/typegen: {}
+
+  packages/ui-solid:
+    dependencies:
+      '@iconify/tailwind':
+        specifier: ^0.1.4
+        version: 0.1.4
+      '@kobalte/core':
+        specifier: ^0.12.3
+        version: 0.12.3(solid-js@1.8.15)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      solid-js:
+        specifier: ^1.8.15
+        version: 1.8.15
+      tailwind-merge:
+        specifier: ^2.2.1
+        version: 2.2.1
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.1)
+    devDependencies:
+      autoprefixer:
+        specifier: ^10.4.18
+        version: 10.4.18(postcss@8.4.35)
+      postcss:
+        specifier: ^8.4.35
+        version: 8.4.35
+      tailwindcss:
+        specifier: ^3.4.1
+        version: 3.4.1
+      typescript:
+        specifier: ^5.2.2
+        version: 5.4.2
 
 packages:
 
